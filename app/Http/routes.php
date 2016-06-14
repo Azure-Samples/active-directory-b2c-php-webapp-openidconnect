@@ -104,6 +104,8 @@ Route::match(['get', 'post'], '/', function () {
 	// Existing session
 	else if (isset($_COOKIE['user'])) {
 		
+		return "THE END";
+		
 		$given_name = $_COOKIE['user'];
 		
 		$signout_endpoint_handler = new EndpointHandler($generic_policy);
