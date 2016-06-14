@@ -4,7 +4,7 @@
 	$tenant = "olenaolena";
 	$clientID = "efb2ce32-272a-4705-97f4-d67988ad4354";
 	$client_secret = "2FY71Wq5pD&D[79]";
-	$redirect_uri = urlencode("//olenablog.azurewebsites.net/"); 
+	$redirect_uri = urlencode("https://olenablog.azurewebsites.net/"); 
 	$response_type = "id_token"; // either id_token or code, depending on whether your application has enabled/disabled implicit flow
 	$response_mode = "form_post"; // can also be query_string or fragment, but this code works with form_post
 	$scope = "openid"; // currently, just openid supported
