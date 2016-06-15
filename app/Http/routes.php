@@ -13,6 +13,8 @@
 
 Route::match(['get', 'post'], '/', function () {
 	
+	return view('welcome');
+	
 	require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/EndpointHandler.php";
 	require app_path()."/Http/Controllers/TokenChecker.php";
@@ -104,8 +106,6 @@ Route::match(['get', 'post'], '/', function () {
 	// Existing session
 	else if (isset($_COOKIE['user'])) {
 		
-		return "THE END";
-		
 		$given_name = $_COOKIE['user'];
 		
 		$signout_endpoint_handler = new EndpointHandler($generic_policy);
@@ -160,9 +160,29 @@ Route::get('/logout', function () {
 	} 
 });
 
+Route::match(['get', 'post'], '/edit_profile', function () {
+    require app_path()."/Http/Controllers/settings.php";
+	require app_path()."/Http/Controllers/EndpointHandler.php";
+		
+	$endpoint_handler = new EndpointHandler($edit_profile_policy);
+	$authorization_endpoint = $endpoint_handler->getAuthorizationEndpoint()."&state=edit_profile";
+			
+	// Set cookie for state
+	$state = rand();
+	setcookie("state", $state);
+	$authorization_endpoint = $authorization_endpoint . "+" . $state;
+				
+	// Redirect to sign up/sign in page
+	return redirect($authorization_endpoint);
+});
 
 
 
 
 
 
+
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
