@@ -96,8 +96,7 @@ Route::match(['get', 'post'], '/', function () {
 			
 		$database = new Database();
 		$blog_posts = $database->fetchBlogPosts();
-		$blog_posts = array();
-			
+		
 		return view('home', ['blog_posts'=>$blog_posts]);
 		
 	}
@@ -114,7 +113,6 @@ Route::match(['get', 'post'], '/', function () {
 		
 		$database = new Database();
 		$blog_posts = $database->fetchBlogPosts();
-		$blog_posts = array();
 		
 		return view('home', ['blog_posts'=>$blog_posts]);
 	}
