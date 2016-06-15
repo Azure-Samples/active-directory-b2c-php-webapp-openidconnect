@@ -11,7 +11,9 @@
 |
 */
 
-Route::match(['get', 'post'], '/', function () {
+Route::match(['get', 'post'], '/', 'HomeController@index');
+
+/* {
 	
 	require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/EndpointHandler.php";
@@ -119,7 +121,7 @@ Route::match(['get', 'post'], '/', function () {
 	
     
 });
-
+*/
 Route::match(['get', 'post'], '/login', function () {
     require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/EndpointHandler.php";
