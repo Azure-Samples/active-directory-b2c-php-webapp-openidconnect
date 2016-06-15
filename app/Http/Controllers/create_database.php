@@ -20,6 +20,9 @@ try {
 			)";
 	$conn->exec($sql);
 	
+	$sql = 'INSERT INTO blogPosts(title, content) VALUES ("Hello","ABC")';
+	$conn->exec($sql);
+	
 }
 
 catch(PDOException $sql) {

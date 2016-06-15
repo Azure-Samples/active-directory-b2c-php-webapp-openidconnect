@@ -18,10 +18,10 @@
 	$admins = array("olenah@umich.edu");
 	
 	// Database
-	$servername = "localhost";
-	$username = "olena";
-	$password = "Personas12";
-	$dbname = "myDB";
+	$servername = "us-cdbr-azure-west-c.cloudapp.net";
+	$username = "b8aa8e5629b408";
+	$password = "5d4e9efb";
+	$dbname = "olenablog";
 	
 	//////////////////////////////////////////////////////
 	$metadata_endpoint_begin = 'https://login.microsoftonline.com/'.
