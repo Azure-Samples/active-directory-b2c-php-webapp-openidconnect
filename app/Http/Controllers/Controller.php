@@ -36,6 +36,8 @@ class HomeController extends Controller
 		require app_path()."/Http/Controllers/EndpointHandler.php";
 		require app_path()."/Http/Controllers/TokenChecker.php";
 		
+		return "UGH";
+		
 		// User not authenticated
 		if (!isset($_POST['id_token']) && !isset($_POST['code']) && !isset($_COOKIE['user'])) {
 			return view('intro');

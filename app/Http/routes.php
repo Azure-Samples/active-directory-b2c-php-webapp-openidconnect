@@ -13,6 +13,10 @@
 
 Route::match(['get', 'post'], '/', 'HomeController@index');
 
+Route::get('/', 'HomeController@index');
+
+Route::post('/', 'HomeController@index');
+
 /* {
 	
 	require app_path()."/Http/Controllers/settings.php";
