@@ -11,17 +11,13 @@
 |
 */
 
-Route::match(['get', 'post'], '/', 'HomeController@index');
-
-Route::get('/', 'HomeController@index');
-
-Route::post('/', 'HomeController@index');
-
-/* {
+Route::match(['get', 'post'], '/', function () {
 	
 	require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/EndpointHandler.php";
 	require app_path()."/Http/Controllers/TokenChecker.php";
+	require app_path()."/Http/Controllers/create_database.php";
+	require app_path()."/Http/Controllers/Database.php";
 	
 	// User not authenticated
 	if (!isset($_POST['id_token']) && !isset($_POST['code']) && !isset($_COOKIE['user'])) {
@@ -98,8 +94,8 @@ Route::post('/', 'HomeController@index');
 		$edit_profile_endpoint_handler = new EndpointHandler($edit_profile_policy);
 		$edit_profile_uri = $edit_profile_endpoint_handler->getAuthorizationEndpoint()."&state=edit_profile";
 			
-		//$database = new Database();
-		//$blog_posts = $database->fetchBlogPosts();
+		$database = new Database();
+		$blog_posts = $database->fetchBlogPosts();
 		$blog_posts = array();
 			
 		return view('home', ['blog_posts'=>$blog_posts]);
@@ -116,8 +112,8 @@ Route::post('/', 'HomeController@index');
 		$edit_profile_endpoint_handler = new EndpointHandler($edit_profile_policy);
 		$edit_profile_uri = $edit_profile_endpoint_handler->getAuthorizationEndpoint()."&state=edit_profile";
 		
-		//$database = new Database();
-		//$blog_posts = $database->fetchBlogPosts();
+		$database = new Database();
+		$blog_posts = $database->fetchBlogPosts();
 		$blog_posts = array();
 		
 		return view('home', ['blog_posts'=>$blog_posts]);
@@ -125,7 +121,7 @@ Route::post('/', 'HomeController@index');
 	
     
 });
-*/
+
 Route::match(['get', 'post'], '/login', function () {
     require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/EndpointHandler.php";
