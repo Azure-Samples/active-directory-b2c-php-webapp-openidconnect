@@ -179,6 +179,6 @@ Route::match(['get', 'post'], '/edit_profile', function () {
 
 
 
-Route::auth();
+//Route::auth();
 
 //Route::get('/home', 'HomeController@index');
