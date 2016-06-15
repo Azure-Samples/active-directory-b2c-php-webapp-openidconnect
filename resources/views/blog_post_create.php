@@ -1,7 +1,7 @@
 <html lang="en">
   
 	<head>
-		<?php include "views/blog_layout.php" ?>
+		
 	</head>
   
 	<body>

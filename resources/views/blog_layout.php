@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Olena's Blog</title>
+    <title>Olenas Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="views/blog theme/css/bootstrap.min.css" rel="stylesheet">

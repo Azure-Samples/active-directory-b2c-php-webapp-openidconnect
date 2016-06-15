@@ -180,8 +180,7 @@ Route::get('/new_post', function () {
 		return "Sorry, you are not an administrator of this blog. You don't have permission to write new posts";
 		
 	}
-	
-	
+
 	return view('blog_post_create');
 }
 	
