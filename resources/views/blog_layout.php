@@ -37,10 +37,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
 					<li>
-                        <a href="new_post.php">New Blog Post</a>
+                        <a href="new_post">New Blog Post</a>
                     </li>
                     <li>
-                        <a href="edit_profile.php">Edit Profile</a>
+                        <a href="edit_profile">Edit Profile</a>
                     </li>
                     <li>
                         <a href="logout">Logout</a>

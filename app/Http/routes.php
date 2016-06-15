@@ -120,7 +120,7 @@ Route::match(['get', 'post'], '/', function () {
     
 });
 
-Route::match(['get', 'post'], '/login', function () {
+Route::get('/login', function () {
     require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/EndpointHandler.php";
 		
@@ -156,7 +156,7 @@ Route::get('/logout', function () {
 	} 
 });
 
-Route::match(['get', 'post'], '/edit_profile', function () {
+Route::get('/edit_profile', function () {
     require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/EndpointHandler.php";
 		
@@ -172,13 +172,36 @@ Route::match(['get', 'post'], '/edit_profile', function () {
 	return redirect($authorization_endpoint);
 });
 
+Route::get('/new_post', function () {
+	
 
+	// Ensure user is an admin
+	if (!in_array($email, $admins)) {
+		return "Sorry, you are not an administrator of this blog. You don't have permission to write new posts";
+		
+	}
+	
+	
+	return view('blog_post_create');
+}
+	
+});
 
+Route::post('/new_post', function() {
+	
+	require app_path()."/Http/Controllers/Database.php";
+	
+	// If user just created a blog post
+	if (isset($_POST['new_blog_post'])) {
+		// Put into database
+		$database = new Database();
+		$database->newBlogPost($_POST['title'], $_POST['content']);
+	}
+	
+	$database = new Database();
+	$blog_posts = $database->fetchBlogPosts();
+		
+	return view('home', ['blog_posts'=>$blog_posts]);
+	
+});
 
-
-
-
-
-//Route::auth();
-
-//Route::get('/home', 'HomeController@index');
