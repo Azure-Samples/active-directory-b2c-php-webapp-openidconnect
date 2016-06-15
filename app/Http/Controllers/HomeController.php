@@ -126,5 +126,21 @@ class HomeController extends Controller
 			return view('home', ['blog_posts'=>$blog_posts]);
 		}
     }
+	
+	public function login() {
+		require app_path()."/Http/Controllers/settings.php";
+		require app_path()."/Http/Controllers/EndpointHandler.php";
+			
+		$endpoint_handler = new EndpointHandler($generic_policy);
+		$authorization_endpoint = $endpoint_handler->getAuthorizationEndpoint()."&state=generic";
+			
+		// Set cookie for state
+		$state = rand();
+		setcookie("state", $state);
+		$authorization_endpoint = $authorization_endpoint . "+" . $state;
+				
+		// Redirect to sign up/sign in page
+		return redirect($authorization_endpoint);
+	}
 }
 

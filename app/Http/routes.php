@@ -142,7 +142,7 @@ Route::get('/logout', function () {
 // User not authenticated
 	if (!isset($_POST['id_token']) && !isset($_POST['code']) && !isset($_COOKIE['user'])) {
 		
-		require_once 'pages/views/error.php';
+		//require_once 'pages/views/error.php';
 	}
 	else {
 		require app_path()."/Http/Controllers/settings.php";
