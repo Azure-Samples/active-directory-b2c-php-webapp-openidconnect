@@ -182,7 +182,6 @@ Route::get('/new_post', function () {
 	}
 
 	return view('blog_post_create');
-}
 	
 });
 
