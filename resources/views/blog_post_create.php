@@ -7,7 +7,7 @@
 	<body>
 
 		<div class="well">
-				<form action="new_post.php" method="post" role="form">
+				<form action="new_post" method="post" role="form">
 					<div class="form-group">
 						<input type="hidden" name="new_blog_post" value="true">
 						<h4>Title <input type="text" name="title"> </h4>
