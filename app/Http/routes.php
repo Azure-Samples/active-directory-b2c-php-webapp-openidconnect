@@ -13,8 +13,6 @@
 
 Route::match(['get', 'post'], '/', function () {
 	
-	return view('welcome');
-	
 	require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/EndpointHandler.php";
 	require app_path()."/Http/Controllers/TokenChecker.php";
@@ -55,8 +53,6 @@ Route::match(['get', 'post'], '/', function () {
 			$error_msg = "response from B2C was not code or id_token";
 			require_once('views/pages/error.php');
 		}
-		
-		echo "resp is ".$resp;
 				
 		$tokenChecker = new TokenChecker($resp, $resp_type, $clientID, $client_secret, $policy);
 		$verified = $tokenChecker->authenticate();
@@ -185,4 +181,4 @@ Route::match(['get', 'post'], '/edit_profile', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
