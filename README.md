@@ -1,5 +1,5 @@
 # active-directory-b2c-php-webapp-openidconnect
-A PHP web application that authenticates users with Azure AD B2C using OpenID Connect.
+A PHP web application that authenticates users with Azure AD B2C using OpenID Connect. You can see a live version of this application here: https://olenablog.azurewebsites.net/ 
 ## Running this sample
 Coming soon...
 ## Deploy this sample to Azure
