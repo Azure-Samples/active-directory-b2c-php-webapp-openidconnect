@@ -25,6 +25,7 @@ function checkUserIsAdmin() {
 }
 
 function fetchBlogPosts() {
+	echo "INSIDE Fetch Blog Post";
 	require app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
 	$blog_posts = $database->fetchBlogPosts();
@@ -32,6 +33,7 @@ function fetchBlogPosts() {
 }
 
 function createNewBlogPost() {
+	echo "inside create new blog post";
 	require app_path()."/Http/Controllers/Database.php";
 	
 	// Check that the user just created a blog post
