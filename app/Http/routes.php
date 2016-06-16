@@ -16,11 +16,11 @@ function checkUserIsAdmin() {
 	require app_path()."/Http/Controllers/settings.php";
 	
 	if (!isset($_COOKIE['email'])) {
-		return view('error', ['error_msg'=>'You are not logged in and do not have permission');
+		return view('error', ['error_msg'=>'You are not logged in and do not have permission']);
 	}
 	
 	if (!in_array($_COOKIE['email'], $admins)) {
-		return view('error', ['error_msg'=>'You are not an admin and do not have permission');
+		return view('error', ['error_msg'=>'You are not an admin and do not have permission']);
 	}
 }
 
@@ -73,9 +73,7 @@ Route::post('/', function () {
 	$action = $state[0];
 	$state_cookie = $state[1];
 	if ($state_cookie != $_COOKIE['state']) {
-		$error_msg = "Returned state does not match cookie state";
-		require_once('views/pages/error.php');
-		return;
+		return view('error', ['error_msg'=>"Returned state does not match cookie state"]);
 	}
 		
 	// Check which authorization policy was used
@@ -97,8 +95,7 @@ Route::post('/', function () {
 	$tokenChecker = new TokenChecker($resp, $resp_type, $clientID, $client_secret, $policy);
 	$verified = $tokenChecker->authenticate();
 	if ($verified == false) {
-		$error_msg = "Invalid token";
-		return view('error');
+		return view('error', ['error_msg'=>"Token validation error"]);
 	}
 		
 	// Fetch user's email and check if admin 
@@ -150,7 +147,7 @@ Route::get('/logout', function () {
 	
 	// User not authenticated
 	if (!isset($_POST['id_token']) && !isset($_POST['code']) && !isset($_COOKIE['user'])) {
-		return view('error', 'error_msg'=>'Trying to log out when not logged in');
+		return view('error', ['error_msg'=>'Trying to log out when not logged in']);
 	}
 	else {
 		require app_path()."/Http/Controllers/settings.php";
