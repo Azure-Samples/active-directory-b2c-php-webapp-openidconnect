@@ -187,7 +187,7 @@ Route::get('/edit_profile', function () {
 Route::get('/new_post', function () {
 	
 	$userIsAdmin = checkUserIsAdmin();
-	if (is_string(userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
+	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
 	return view('blog_post_create');
 });
 
@@ -195,7 +195,7 @@ Route::get('/new_post', function () {
 Route::post('/new_post', function() {
 	
 	$userIsAdmin = checkUserIsAdmin();
-	if (is_string(userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
+	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
 	createNewBlogPost();
 	$blog_posts = fetchBlogPosts();
 	return view('home', ['blog_posts'=>$blog_posts]);
