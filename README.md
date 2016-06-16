@@ -1,5 +1,5 @@
 # active-directory-b2c-php-webapp-openidconnect
-A PHP web application that authenticates users with Azure AD B2C using OpenID Connect. B2C is an identity management service for both web applications and mobile applications. Developers can rely on B2C for consumer sign up and sign in, instead of relying on their own code. Consumers can sign in using brand new credentials or existing accounts on various social platforms (Facebook, for example). 
+This repo contains code for a PHP blogging application that demonstrates the use of several B2C policies: general sign-in/sign-up without multifactor authetication, sign-in/sign-up with multifactor authentication, and profile editing. Users designated as administrators must login with the administrator policy requiring multifactor authentication. Administrators have the ability to create new blog posts. The application also illustrates how to receive and verify id-tokens from the B2C endpoint following the OpenID Connect standard. 
 
 A live version of this application is available here: https://olenablog.azurewebsites.net/ 
 
@@ -29,4 +29,6 @@ The instructions below show you how to run/deploy your own blogging application 
 Main logic is in "app/Http/routes.php" and "app/Http/Controllers". (The rest is mainly for the Laravel framework). If you are interested in the token verification logic, see "app/Http/Controllers/TokenChecker.php". 
 
 ## More information
+A PHP web application that authenticates users with Azure AD B2C using OpenID Connect. B2C is an identity management service for both web applications and mobile applications. Developers can rely on B2C for consumer sign up and sign in, instead of relying on their own code. Consumers can sign in using brand new credentials or existing accounts on various social platforms (Facebook, for example). 
+
 Learn more about B2C here: https://azure.microsoft.com/en-us/services/active-directory-b2c/
