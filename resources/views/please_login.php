@@ -4,8 +4,7 @@
     <?php include "please_login_layout.php" ?>
 </head>
 	
-	<body>
-	
+<body>
 	<!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
@@ -48,7 +47,6 @@
             </div>
         </div>
     </footer>
- 
-	</body>
+</body>
 
 </html>

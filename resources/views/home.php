@@ -14,7 +14,7 @@
 
             <!-- Blog Post Content Column -->
             <div class="col-lg-8">
-
+				<p><p><p><p><p>
                 <!-- Blog Post -->
 				<?php foreach($blog_posts as $post) { ?>
 					<!-- Title -->
