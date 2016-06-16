@@ -18,13 +18,13 @@ function checkUserIsAdmin() {
 	require app_path()."/Http/Controllers/settings.php";
 	
 	if (!isset($_COOKIE['email'])) {
-		return view('error', ['error_msg'=>'You are not logged in and do not have permission']);
+		return 'You are not logged in and do not have permission';
 	}
 	
 	if (!in_array($_COOKIE['email'], $admins)) {
-		echo "not admin";
-		return view('error', ['error_msg'=>'You are not an admin and do not have permission']);
+		return 'You are not an admin and do not have permission';
 	}
+	return true;
 }
 
 function fetchBlogPosts() {
@@ -186,15 +186,16 @@ Route::get('/edit_profile', function () {
 // A page that allows the user to create a new blog post
 Route::get('/new_post', function () {
 	
-	checkUserIsAdmin();
+	$userIsAdmin = checkUserIsAdmin();
+	if (is_string(userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
 	return view('blog_post_create');
-	
 });
 
 // A page that inserts a new blog post into the database, then shows the homepage
 Route::post('/new_post', function() {
 	
-	checkUserIsAdmin();
+	$userIsAdmin = checkUserIsAdmin();
+	if (is_string(userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
 	createNewBlogPost();
 	$blog_posts = fetchBlogPosts();
 	return view('home', ['blog_posts'=>$blog_posts]);
