@@ -1,8 +1,8 @@
 <html lang="en">
   
-	<head>
-    <?php include "welcome_layout.php" ?>
-  </head>
+<head>
+    <?php include "please_login_layout.php" ?>
+</head>
 	
 	<body>
 	
