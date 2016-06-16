@@ -9,7 +9,7 @@
 	<!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>B2C Sample App</h1>
+            <h1>Blogging about my internship</h1>
             <h3>Welcome! Please sign in to continue.</h3>
             <br>
 			<a href="login" class="btn btn-light btn-lg">Sign In or Sign Up</a>
