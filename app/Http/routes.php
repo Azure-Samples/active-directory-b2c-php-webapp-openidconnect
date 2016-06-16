@@ -58,7 +58,8 @@ Route::get('/', function() {
 		
 		$given_name = $_COOKIE['user'];
 		$blog_posts = fetchBlogPosts();
-		return view('home', ['blog_posts'=>$blog_posts]);
+		return view('home', ['blog_posts'=>$blog_posts,
+							'given_name'=>$given_name]);
 	}
 	
 });
@@ -130,7 +131,8 @@ Route::post('/', function () {
 			
 	// Fetch blog posts from database	
 	$blog_posts = fetchBlogPosts();
-	return view('home', ['blog_posts'=>$blog_posts]);
+	return view('home', ['blog_posts'=>$blog_posts, 
+						'given_name'=>$given_name]);
 		
 });
 
@@ -198,7 +200,8 @@ Route::post('/new_post', function() {
 	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
 	createNewBlogPost();
 	$blog_posts = fetchBlogPosts();
-	return view('home', ['blog_posts'=>$blog_posts]);
+	return view('home', ['blog_posts'=>$blog_posts, 
+						'given_name'=>$_COOKIE['given_name']]);
 	
 });
 
