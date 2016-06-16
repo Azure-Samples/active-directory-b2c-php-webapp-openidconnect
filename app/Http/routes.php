@@ -45,15 +45,12 @@ function createNewBlogPost() {
 
 Route::get('/', function() {
 	
-	echo "got here?";
-	
 	// User not authenticated - show login page
 	if (!isset($_COOKIE['user'])) {
 		return view('please_login');
 	}
 	// Existing session - show homepage
 	else if (isset($_COOKIE['user'])) {
-		echo "DID I GET HERE?";
 		
 		$given_name = $_COOKIE['user'];
 		$blog_posts = fetchBlogPosts();
@@ -64,8 +61,6 @@ Route::get('/', function() {
 });
 
 Route::post('/', function () {
-	
-	echo "HUH";
 	
 	require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/TokenChecker.php";
