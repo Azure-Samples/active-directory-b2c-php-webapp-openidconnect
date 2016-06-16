@@ -13,6 +13,8 @@
 
 function checkUserIsAdmin() {
 	
+	echo "checking user is admin";
+	
 	require app_path()."/Http/Controllers/settings.php";
 	
 	if (!isset($_COOKIE['email'])) {
@@ -20,13 +22,14 @@ function checkUserIsAdmin() {
 	}
 	
 	if (!in_array($_COOKIE['email'], $admins)) {
+		echo "not admin";
 		return view('error', ['error_msg'=>'You are not an admin and do not have permission']);
 	}
 }
 
 function fetchBlogPosts() {
 	echo "INSIDE Fetch Blog Post";
-	require app_path()."/Http/Controllers/Database.php";
+	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
 	$blog_posts = $database->fetchBlogPosts();
 	return $blog_posts;
