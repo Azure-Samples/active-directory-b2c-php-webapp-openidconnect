@@ -217,10 +217,8 @@ Route::post('/new_post', function() {
 Route::get('/blog_post', function () {
 	
 	$blog_id = $_GET['id'];
-	$blog_post = fetchBlogPostById($blog_id);
-	echo "blog post is ";
-	var_dump($blog_post);
-	return view('blog_post_view', ['post'=>$blog_post]);
+	$blog_posts = fetchBlogPostById($blog_id);
+	return view('blog_post_view', ['blog_posts'=>$blog_posts]);
 	
 });
 
