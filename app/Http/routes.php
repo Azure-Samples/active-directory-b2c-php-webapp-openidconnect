@@ -13,7 +13,7 @@
 
 function checkUserIsAdmin() {
 	
-	require app_path()."/Http/Controllers/settings.php";
+	require_once app_path()."/Http/Controllers/settings.php";
 	
 	if (!isset($_COOKIE['email'])) {
 		return 'You are not logged in and do not have permission';
@@ -50,35 +50,43 @@ function createNewBlogPost() {
 	}
 }
 
-function createNewComment() {
+function createNewComment($blog_post_id) {
 	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
-	$database->newComment($_GET['id'], $_POST['content'], $_POST['author']);
+	$database->newComment($blog_post_id, $_POST['content'], $_POST['author']);
 }
 
-function fetchComments() {
+function fetchComments($blog_post_id) {
 	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
-	$comments = $database->fetchComments($_GET['id']);
+	$comments = $database->fetchComments($blog_post_id);
 	return $comments;
+}
+
+function getOptionsForToolbar() {
+	
+	require_once app_path()."/Http/Controllers/settings.php";
+	
+	$user_logged_in = isset($_COOKIE['user']);
+	$options = array('user_logged_in'=>$user_logged_in);
+	
+	if ($user_logged_in) {
+		$user_is_admin = in_array($_COOKIE['email'], $admins);
+		array_push($options, 'user_is_admin', $user_is_admin);
+		array_push($options, 'given_name', $_COOKIE['given_name']);
+	}
+	
+	return $options;
+	
 }
 
 Route::get('/', function() {
 	
 	require app_path()."/Http/Controllers/create_database.php";
 	
-	// User not authenticated - show login page
-	if (!isset($_COOKIE['user'])) {
-		return view('please_login');
-	}
-	// Existing session - show homepage
-	else if (isset($_COOKIE['user'])) {
-		
-		$given_name = $_COOKIE['user'];
-		$blog_posts = fetchBlogPosts();
-		return view('home', ['blog_posts'=>$blog_posts,
-							'given_name'=>$given_name]);
-	}
+	$options = getOptionsForToolbar();
+	array_push($options, 'blog_posts', fetchBlogPosts());
+	return view('home', $options);
 	
 });
 
@@ -148,9 +156,9 @@ Route::post('/', function () {
 	setcookie("user", $given_name);
 			
 	// Fetch blog posts from database	
-	$blog_posts = fetchBlogPosts();
-	return view('home', ['blog_posts'=>$blog_posts, 
-						'given_name'=>$given_name]);
+	$options = getOptionsForToolbar();
+	array_push($options, 'blog_posts', fetchBlogPosts());
+	return view('home', $options);
 		
 });
 
@@ -208,40 +216,40 @@ Route::get('/new_post', function () {
 	
 	$userIsAdmin = checkUserIsAdmin();
 	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
-	return view('blog_post_create');
+	
+	$options = getOptionsForToolbar();
+	return view('blog_post_create', $options);
 });
 
-// A page that inserts a new blog post into the database, then shows the homepage
+// A route that inserts a new blog post into the database, then shows the homepage
 Route::post('/new_post', function() {
 	
 	$userIsAdmin = checkUserIsAdmin();
 	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
 	createNewBlogPost();
-	$blog_posts = fetchBlogPosts();
-	return view('home', ['blog_posts'=>$blog_posts, 
-						'given_name'=>$_COOKIE['given_name']]);
+	
+	$options = getOptionsForToolbar();
+	array_push($options, 'blog_posts', fetchBlogPosts());
+	return view('home', $options);
 	
 });
 
 Route::get('/blog_post', function () {
 	
-	$blog_id = $_GET['id'];
-	$blog_posts = fetchBlogPostById($blog_id);
-	$comments = fetchComments();
-	return view('blog_post_view', ['blog_posts'=>$blog_posts,
-									'comments'=>$comments]);
+	$options = getOptionsForToolbar();
+	array_push($options, 'blog_posts', fetchBlogPostById($_GET['id']));
+	array_push($options, 'comments', fetchComments($_GET['id']));
+	return view('blog_post_view', $options);
 	
 });
 
 Route::post('/blog_post', function () {
 	
-	createNewComment();
+	createNewComment($_GET['id']);
 	
-	
-	$blog_id = $_GET['id'];
-	$blog_posts = fetchBlogPostById($blog_id);
-	$comments = fetchComments();
-	return view('blog_post_view', ['blog_posts'=>$blog_posts,
-									'comments'=>$comments]);
+	$options = getOptionsForToolbar();
+	array_push($options, 'blog_posts', fetchBlogPostById($_GET['id']));
+	array_push($options, 'comments', fetchComments($_GET['id']));
+	return view('blog_post_view', $options);
 	
 });

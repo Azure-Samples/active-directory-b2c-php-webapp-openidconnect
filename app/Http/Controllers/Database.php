@@ -10,7 +10,7 @@ class Database {
 	}
 	
 	public function fetchBlogPosts() {
-		require "settings.php";
+		
 		
 		$conn = $this->setUp();
 	
@@ -22,7 +22,7 @@ class Database {
 	}
 	
 	public function fetchBlogPostById($id) {
-		require "settings.php";
+		
 		
 		$conn = $this->setUp();
 	
@@ -50,7 +50,7 @@ class Database {
 	
 	public function fetchComments($blog_id) {
 		$conn = $this->setUp();
-		$sth = $conn->prepare("SELECT author, content FROM comments WHERE blog_id=".$blog_id);
+		$sth = $conn->prepare("SELECT author, content FROM comments WHERE blog_id=".$blog_id." ORDER BY reg_date DESC");
 		$sth->execute();
 		$result = $sth->fetchAll();
 		$conn = null;
