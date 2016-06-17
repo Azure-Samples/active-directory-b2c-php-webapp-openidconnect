@@ -21,12 +21,31 @@ class Database {
 		return $result;
 	}
 	
+	public function fetchBlogPostById($id) {
+		require "settings.php";
+		
+		$conn = $this->setUp();
+	
+		$sth = $conn->prepare("SELECT title, content, reg_date FROM blogPosts WHERE id=".$id);
+		$sth->execute();
+		$result = $sth->fetchAll();
+		$conn = null;
+		return $result;
+	}
+	
 	public function newBlogPost($title, $content) {
 		$conn = $this->setUp();
 		$sql = "INSERT INTO blogPosts (title, content)
 				VALUES ('".$title."', '".$content."')";
 		$conn->exec($sql);
 		
+	}
+	
+	public function newComment($blog_id, $content) {
+		$conn = $this->setUp();
+		$sql = "INSERT INTO comments (blog_id, content)
+				VALUES ('".$blog_id."', '".$content."')";
+		$conn->exec($sql);
 	}
 }
 
