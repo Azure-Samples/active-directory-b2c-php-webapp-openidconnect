@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    <?php include "blog_layout.php" ?>
+    <?php /*include "blog_layout.php"*/ ?>
 </head>
 
 <body>
 	
 	<h1>Hello, <?php if (isset($given_name)) echo $given_name?>!</h1>
+	<h1>please work, {{ given_name }}!</h1>
   <blockquote>I'm Olena and I'm an intern on the B2C (Business to Consumer) team at Microsoft. 
 				B2C is a really exciting product that lets developers use Microsoft to authenticate users. 
 				This way, developers don't have to worry about the complicated security issues associated 
