@@ -59,7 +59,7 @@ function createNewComment() {
 function fetchComments() {
 	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
-	$comments = $database->newComment($_GET['id']);
+	$comments = $database->fetchComments($_GET['id']);
 	return $comments;
 }
 
