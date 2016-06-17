@@ -230,7 +230,7 @@ Route::post('/blog_post', function () {
 	
 	
 	$blog_id = $_GET['id'];
-	$blog_post = fetchBlogPostById($blog_id);
-	return view('blog_post_view', ['post'=>$blog_post]);
+	$post = fetchBlogPostById($blog_id);
+	return view('blog_post_view', ['post'=>$post]);
 	
 });
