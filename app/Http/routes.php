@@ -25,18 +25,18 @@ function checkUserIsAdmin() {
 	return true;
 }
 
-function fetchBlogPostById($id) {
-	require_once app_path()."/Http/Controllers/Database.php";
-	$database = new Database();
-	$blog_post = $database->fetchBlogPostById($id);
-	return $blog_post;
-}
-
 function fetchBlogPosts() {
 	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
 	$blog_posts = $database->fetchBlogPosts();
 	return $blog_posts;
+}
+
+function fetchBlogPostById($id) {
+	require_once app_path()."/Http/Controllers/Database.php";
+	$database = new Database();
+	$blog_post = $database->fetchBlogPostById($id);
+	return $blog_post;
 }
 
 function createNewBlogPost() {
@@ -48,6 +48,12 @@ function createNewBlogPost() {
 		$database = new Database();
 		$database->newBlogPost($_POST['title'], $_POST['content']);
 	}
+}
+
+function createNewComment() {
+	require app_path()."/Http/Controllers/Database.php";
+	$database = new Database();
+	$database->newComment($_GET['id'], $_POST['content'], $_POST['author']);
 }
 
 Route::get('/', function() {
@@ -209,6 +215,17 @@ Route::post('/new_post', function() {
 });
 
 Route::get('/blog_post', function () {
+	
+	$blog_id = $_GET['id'];
+	$blog_post = fetchBlogPostById($blog_id);
+	return view('blog_post_view', ['post'=>$blog_post]);
+	
+});
+
+Route::post('/blog_post', function () {
+	
+	createNewComment();
+	
 	
 	$blog_id = $_GET['id'];
 	$blog_post = fetchBlogPostById($blog_id);

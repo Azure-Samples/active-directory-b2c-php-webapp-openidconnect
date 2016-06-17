@@ -34,8 +34,9 @@
                     <h4>Leave a Comment:</h4>
                     <form role="form">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" rows="3" name="content"></textarea>
                         </div>
+						<input type="hidden" name="author" value="Olena">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

@@ -30,7 +30,7 @@
       <li><a href="logout">Logout</a></li>
     </ul>
   </div>
-  <h1>Hello, <?php echo $given_name?>!</h1>
+  <h1>Hello, <?php if (isset($given_name)) echo $given_name?>!</h1>
   <blockquote>I'm Olena and I'm an intern on the B2C (Business to Consumer) team at Microsoft. B2C is a really exciting product that lets developers use Microsoft to authenticate users. This way, developers don't have to worry about the complicated security issues associated with user authentication, since Microsoft already does that really well.<br />
     To find out more about B2C, visit <a href="https://azure.microsoft.com/en-us/services/active-directory-b2c/">the website</a>.</blockquote>
   <p><img class="img" src="<?php echo asset("theme/img/blank.jpg")?>" alt="blank" title="blank" width="60" height="60" /> As part of my intern project, I'm creating a PHP web application 

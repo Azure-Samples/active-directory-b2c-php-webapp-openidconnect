@@ -41,10 +41,10 @@ class Database {
 		
 	}
 	
-	public function newComment($blog_id, $content) {
+	public function newComment($blog_id, $content, $author) {
 		$conn = $this->setUp();
-		$sql = "INSERT INTO comments (blog_id, content)
-				VALUES ('".$blog_id."', '".$content."')";
+		$sql = "INSERT INTO comments (blog_id, content, author)
+				VALUES ('".$blog_id."', '".$content."', '".$author."')";
 		$conn->exec($sql);
 	}
 }
