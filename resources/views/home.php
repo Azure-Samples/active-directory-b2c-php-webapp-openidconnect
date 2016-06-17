@@ -42,18 +42,18 @@
   
 	
 	<!-- Display all Blog Posts -->
-	<?php foreach($blog_posts as $post) { ?>
+	@foreach(blog_posts as post)
 		<!-- Title -->
-		<h2><a href="blog_post?id=<?php echo $post['id']?>"><?php echo $post['title']?></a></h2>
+		<h2><a href="blog_post?id={{ post->id }}">{{ post->title }}</a></h2>
 		<div class="roundcont">
 			<div class="roundtop"><img src="<?php echo asset("theme/img/tl.gif")?>" alt="tl img"  width="10" height="10" class="corner"  style="display: none" /> </div>
 				<!-- Post Content -->
-				<p><?php echo $post['content']?></p>
+				<p>{{ post->content }}</p>
 				<!-- Post date/time -->
-				<span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post['reg_date']?> <p>
+				<span class="glyphicon glyphicon-time"></span> Posted on {{ post->reg_date }}<p>
 			<div class="roundbottom"><img src="<?php echo asset("theme/img/bl.gif")?>" alt="bl img" width="10" height="10" class="corner" style="display: none" /></div>
 		</div>
-	<?php } ?>
+	@endforeach
 
 </body>
 
