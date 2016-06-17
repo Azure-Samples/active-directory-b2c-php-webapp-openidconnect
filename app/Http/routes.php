@@ -90,7 +90,8 @@ Route::get('/', function() {
 	
 	echo "options";
 	var_dump($options);
-	return view('home', ['blog_posts'=>fetchBlogPosts(), $options]);
+	
+	return view('home', [$options]);
 	
 });
 
