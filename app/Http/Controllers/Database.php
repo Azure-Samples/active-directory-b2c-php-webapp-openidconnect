@@ -14,7 +14,7 @@ class Database {
 		
 		$conn = $this->setUp();
 	
-		$sth = $conn->prepare("SELECT title, content, reg_date FROM blogPosts ORDER BY reg_date DESC");
+		$sth = $conn->prepare("SELECT id, title, content, reg_date FROM blogPosts ORDER BY reg_date DESC");
 		$sth->execute();
 		$result = $sth->fetchAll();
 		$conn = null;
@@ -26,7 +26,7 @@ class Database {
 		
 		$conn = $this->setUp();
 	
-		$sth = $conn->prepare("SELECT title, content, reg_date FROM blogPosts WHERE id=".$id);
+		$sth = $conn->prepare("SELECT id, title, content, reg_date FROM blogPosts WHERE id=".$id);
 		$sth->execute();
 		$result = $sth->fetchAll();
 		$conn = null;
