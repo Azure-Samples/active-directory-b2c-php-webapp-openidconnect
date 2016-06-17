@@ -19,14 +19,14 @@
             <div class="col-lg-8">
 				
                 <!-- Blog Post -->
-				
+				<?php foreach($blog_posts as $post) { ?>
 					<!-- Title -->
 					<h1><?php echo $post['title']?></h1>
 					<span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post['reg_date']?> <p>
 					<!-- Post Content -->
 					<p class="lead"><?php echo $post['content']?>
 					<hr>
-				
+				<?php } ?>
             </div>
 			
 			<!-- Comments Form -->
