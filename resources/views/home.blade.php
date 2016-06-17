@@ -45,7 +45,7 @@
 	<!-- Display all Blog Posts -->
 	@foreach ($blog_posts as $post)
 		<!-- Title -->
-		<h2><a href="blog_post?id={{ post->id }}">{{ $post->title }}</a></h2>
+		<h2><a href="blog_post?id={{ $post->id }}">{{ $post->title }}</a></h2>
 		<div class="roundcont">
 			<div class="roundtop"><img src="<?php echo asset("theme/img/tl.gif")?>" alt="tl img"  width="10" height="10" class="corner"  style="display: none" /> </div>
 				<!-- Post Content -->
