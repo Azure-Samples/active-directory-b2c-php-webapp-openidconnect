@@ -47,6 +47,15 @@ class Database {
 				VALUES ('".$blog_id."', '".$content."', '".$author."')";
 		$conn->exec($sql);
 	}
+	
+	public function fetchComments($blog_id) {
+		$conn = $this->setUp();
+		$sth = $conn->prepare("SELECT author, content FROM comments WHERE blog_id=".$blog_id);
+		$sth->execute();
+		$result = $sth->fetchAll();
+		$conn = null;
+		return $result;
+	}
 }
 
 ?>

@@ -56,6 +56,13 @@ function createNewComment() {
 	$database->newComment($_GET['id'], $_POST['content'], $_POST['author']);
 }
 
+function fetchComments() {
+	require app_path()."/Http/Controllers/Database.php";
+	$database = new Database();
+	$comments = $database->newComment($_GET['id']);
+	return $comments;
+}
+
 Route::get('/', function() {
 	
 	require app_path()."/Http/Controllers/create_database.php";
@@ -220,7 +227,9 @@ Route::get('/blog_post', function () {
 	
 	$blog_id = $_GET['id'];
 	$blog_posts = fetchBlogPostById($blog_id);
-	return view('blog_post_view', ['blog_posts'=>$blog_posts]);
+	$comments = fetchComments();
+	return view('blog_post_view', ['blog_posts'=>$blog_posts,
+									'comments'=>$comments]);
 	
 });
 
@@ -231,6 +240,8 @@ Route::post('/blog_post', function () {
 	
 	$blog_id = $_GET['id'];
 	$blog_posts = fetchBlogPostById($blog_id);
-	return view('blog_post_view', ['blog_posts'=>$blog_posts]);
+	$comments = fetchComments();
+	return view('blog_post_view', ['blog_posts'=>$blog_posts,
+									'comments'=>$comments]);
 	
 });
