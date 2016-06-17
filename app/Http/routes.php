@@ -12,7 +12,7 @@
 */
 
 function checkUserLoggedIn() {
-	return isset($_COOKIE['user');
+	return isset($_COOKIE['user']);
 }
 
 function checkUserIsAdmin() {
