@@ -25,6 +25,13 @@ function checkUserIsAdmin() {
 	return true;
 }
 
+function fetchBlogPostById($id) {
+	require_once app_path()."/Http/Controllers/Database.php";
+	$database = new Database();
+	$blog_post = $database->fetchBlogPostById($id);
+	return $blog_post;
+}
+
 function fetchBlogPosts() {
 	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
