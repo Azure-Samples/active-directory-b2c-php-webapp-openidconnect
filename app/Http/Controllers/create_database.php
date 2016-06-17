@@ -26,7 +26,6 @@ try {
 	// Create table to store comments
 	$sql = "CREATE TABLE IF NOT EXISTS comments (
 			blog_id INT(6),
-			FOREIGN KEY (blog_id) REFERENCES blogPosts(id),
 			content VARCHAR(1000) NOT NULL,
 			author VARCHAR(500) NOT NULL,
 			reg_date TIMESTAMP
