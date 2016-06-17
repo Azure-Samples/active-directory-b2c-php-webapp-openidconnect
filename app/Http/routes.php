@@ -82,7 +82,6 @@ function getOptionsForToolbar() {
 
 Route::get('/', function() {
 	
-	
 	echo "On home";
 	
 	$options = getOptionsForToolbar();
@@ -91,8 +90,7 @@ Route::get('/', function() {
 	echo "options";
 	var_dump($options);
 	
-	return view('home', ['given_name'=>"UGH", $options]);
-	
+	return view('home', $options);
 });
 
 Route::post('/', function () {
