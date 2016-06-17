@@ -63,34 +63,21 @@ function fetchComments($blog_post_id) {
 	return $comments;
 }
 
-function getOptionsForToolbar() {
+Route::get('/', function() {
 	
 	require_once app_path()."/Http/Controllers/settings.php";
 	
-	$user_logged_in = isset($_COOKIE['user']);
-	$options = array('user_logged_in'=>$user_logged_in);
-	
-	if ($user_logged_in) {
+	if (isset($_COOKIE['user'])) {
 		$user_is_admin = in_array($_COOKIE['email'], $admins);
-		array_push($options, 'user_is_admin', $user_is_admin);
-		array_push($options, 'given_name', $_COOKIE['user']);
+		return view('blog_layout', ['user_logged_in'=>true,
+							 'user_is_admin'=>$user_is_admin,
+							 'given_name'=>$_$COOKIE['user'], 
+							 'blog_posts'=>fetchBlogPosts()]);
 	}
-	
-	return $options;
-	
-}
+	else {
+		return view('blog_layout', ['user_logged_in'=>false]);
+	}
 
-Route::get('/', function() {
-	
-	echo "On home";
-	
-	$options = getOptionsForToolbar();
-	array_push($options, 'blog_posts', fetchBlogPosts());
-	
-	echo "options";
-	var_dump($options);
-	
-	return view('home', $options);
 });
 
 Route::post('/', function () {
