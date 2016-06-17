@@ -11,8 +11,8 @@ try {
 	$sql = "USE ".$dbname;
 	$conn->query($sql);
 	
-	$sql = "DROP TABLE blogPosts";
-	$conn->exec($sql);
+	//$sql = "DROP TABLE blogPosts";
+	//$conn->exec($sql);
 	
 	// Create table to store blog posts
 	$sql = "CREATE TABLE IF NOT EXISTS blogPosts (
@@ -34,6 +34,8 @@ try {
 	$conn->exec($sql);
 	
 	echo "on create database page";
+	
+	
 	
 }
 
