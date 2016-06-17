@@ -65,11 +65,12 @@ function fetchComments($blog_post_id) {
 
 function getOptionsForToolbar() {
 	
+	require_once app_path()."/Http/Controllers/settings.php";
+	
 	$user_logged_in = isset($_COOKIE['user']);
 	$options = array('user_logged_in'=>$user_logged_in);
 	
 	if ($user_logged_in) {
-		require_once app_path()."/Http/Controllers/settings.php";
 		$user_is_admin = in_array($_COOKIE['email'], $admins);
 		array_push($options, 'user_is_admin', $user_is_admin);
 		array_push($options, 'given_name', $_COOKIE['given_name']);
@@ -81,7 +82,6 @@ function getOptionsForToolbar() {
 
 Route::get('/', function() {
 	
-	require app_path()."/Http/Controllers/create_database.php";
 	
 	echo "On home";
 	
