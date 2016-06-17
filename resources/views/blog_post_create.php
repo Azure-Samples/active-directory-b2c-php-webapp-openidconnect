@@ -1,10 +1,12 @@
 <html lang="en">
   
-	<head>
+<head>
+	
+	<?php include "blog_layout.php" ?>
 		
-	</head>
+</head>
   
-	<body>
+<body>
 
 		<div class="well">
 				<form action="new_post" method="post" role="form">
@@ -17,4 +19,4 @@
 				</form>
 		</div>
 				
-	</body>
+</body>

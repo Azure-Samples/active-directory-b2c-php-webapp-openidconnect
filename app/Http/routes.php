@@ -15,13 +15,8 @@ function checkUserIsAdmin() {
 	
 	require_once app_path()."/Http/Controllers/settings.php";
 	
-	if (!isset($_COOKIE['email'])) {
-		return 'You are not logged in and do not have permission';
-	}
-	
-	if (!in_array($_COOKIE['email'], $admins)) {
-		return 'You are not an admin and do not have permission';
-	}
+	if (!isset($_COOKIE['email'])) return false;
+	if (!in_array($_COOKIE['email'], $admins)) return false;
 	return true;
 }
 
@@ -69,13 +64,13 @@ Route::get('/', function() {
 	
 	if (isset($_COOKIE['user'])) {
 		$user_is_admin = in_array($_COOKIE['email'], $admins);
-		return view('blog_layout', ['user_logged_in'=>true,
+		return view('home', ['user_logged_in'=>true,
 							 'user_is_admin'=>$user_is_admin,
 							 'given_name'=>$_COOKIE['user'], 
 							 'blog_posts'=>fetchBlogPosts()]);
 	}
 	else {
-		return view('blog_layout', ['user_logged_in'=>false,
+		return view('home', ['user_logged_in'=>false,
 									'blog_posts'=>fetchBlogPosts()]);
 	}
 
@@ -148,8 +143,11 @@ Route::post('/', function () {
 			
 	// Fetch blog posts from database	
 	$options = getOptionsForToolbar();
-	array_push($options, 'blog_posts', fetchBlogPosts());
-	return view('home', $options);
+	$user_is_admin = in_array($_COOKIE['email'], $admins);
+	return view('home', ['user_logged_in'=>true,
+							 'user_is_admin'=>$user_is_admin,
+							 'given_name'=>$_COOKIE['user'], 
+							 'blog_posts'=>fetchBlogPosts()]);
 		
 });
 
@@ -208,8 +206,9 @@ Route::get('/new_post', function () {
 	$userIsAdmin = checkUserIsAdmin();
 	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
 	
-	$options = getOptionsForToolbar();
-	return view('blog_post_create', $options);
+	return view('blog_post_create', ['user_logged_in'=>true,
+							 'user_is_admin'=>true,
+							 'given_name'=>$_COOKIE['user']]);
 });
 
 // A route that inserts a new blog post into the database, then shows the homepage
@@ -219,18 +218,20 @@ Route::post('/new_post', function() {
 	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
 	createNewBlogPost();
 	
-	$options = getOptionsForToolbar();
-	array_push($options, 'blog_posts', fetchBlogPosts());
-	return view('home', $options);
+	return view('home', ['user_logged_in'=>true,
+							 'user_is_admin'=>true,
+							 'given_name'=>$_COOKIE['user'],
+							 'blog_posts'=>fetchBlogPosts()]);
 	
 });
 
 Route::get('/blog_post', function () {
 	
-	$options = getOptionsForToolbar();
-	array_push($options, 'blog_posts', fetchBlogPostById($_GET['id']));
-	array_push($options, 'comments', fetchComments($_GET['id']));
-	return view('blog_post_view', $options);
+	return view('blog_post_view', ['user_logged_in'=>isset($_COOKIE['user']),
+							 'user_is_admin'=>checkUserIsAdmin(),
+							 'given_name'=>$_COOKIE['user'],
+							 'blog_posts'=>fetchBlogPostById($_GET['id']),
+							 'comments'=>fetchComments($_GET['id'])]);
 	
 });
 
@@ -238,9 +239,10 @@ Route::post('/blog_post', function () {
 	
 	createNewComment($_GET['id']);
 	
-	$options = getOptionsForToolbar();
-	array_push($options, 'blog_posts', fetchBlogPostById($_GET['id']));
-	array_push($options, 'comments', fetchComments($_GET['id']));
-	return view('blog_post_view', $options);
+	return view('blog_post_view', ['user_logged_in'=>isset($_COOKIE['user']),
+							 'user_is_admin'=>checkUserIsAdmin(),
+							 'given_name'=>$_COOKIE['user'],
+							 'blog_posts'=>fetchBlogPostById($_GET['id']),
+							 'comments'=>fetchComments($_GET['id'])]);
 	
 });

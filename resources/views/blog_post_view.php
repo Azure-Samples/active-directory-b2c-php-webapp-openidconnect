@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <?php /*include "blog_layout.php" */?>
+    <?php include "blog_layout.php" ?>
 </head>
 
 <body>
