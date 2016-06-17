@@ -17,7 +17,7 @@ function checkUserLoggedIn() {
 
 function checkUserIsAdmin() {
 	
-	require_once app_path()."/Http/Controllers/settings.php";
+	require app_path()."/Http/Controllers/settings.php";
 	
 	if (!isset($_COOKIE['email'])) return false;
 	if (!in_array($_COOKIE['email'], $admins)) return false;
