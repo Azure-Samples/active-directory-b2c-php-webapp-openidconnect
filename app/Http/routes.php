@@ -73,7 +73,7 @@ function getOptionsForToolbar() {
 	if ($user_logged_in) {
 		$user_is_admin = in_array($_COOKIE['email'], $admins);
 		array_push($options, 'user_is_admin', $user_is_admin);
-		array_push($options, 'given_name', $_COOKIE['given_name']);
+		array_push($options, 'given_name', $_COOKIE['user']);
 	}
 	
 	return $options;
