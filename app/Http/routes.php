@@ -75,7 +75,8 @@ Route::get('/', function() {
 							 'blog_posts'=>fetchBlogPosts()]);
 	}
 	else {
-		return view('blog_layout', ['user_logged_in'=>false]);
+		return view('blog_layout', ['user_logged_in'=>false,
+									'blog_posts'=>fetchBlogPosts()]);
 	}
 
 });
