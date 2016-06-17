@@ -71,7 +71,7 @@ Route::get('/', function() {
 		$user_is_admin = in_array($_COOKIE['email'], $admins);
 		return view('blog_layout', ['user_logged_in'=>true,
 							 'user_is_admin'=>$user_is_admin,
-							 'given_name'=>$_$COOKIE['user'], 
+							 'given_name'=>$_COOKIE['user'], 
 							 'blog_posts'=>fetchBlogPosts()]);
 	}
 	else {
