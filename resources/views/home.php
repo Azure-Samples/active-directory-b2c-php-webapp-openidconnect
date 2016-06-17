@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-    <?php /*include "blog_layout.blade.php"*/ ?>
+    <?php include "blog_layout.blade.php" ?>
 </head>
 
 <body>
-	
-	
 	
   <blockquote>I'm Olena and I'm an intern on the B2C (Business to Consumer) team at Microsoft. 
 				B2C is a really exciting product that lets developers use Microsoft to authenticate users. 
@@ -43,18 +41,18 @@
   
 	
 	<!-- Display all Blog Posts -->
-	@foreach ($blog_posts as $post)
+	<?php foreach($blog_posts as $post) { ?>
 		<!-- Title -->
-		<h2><a href="blog_post?id={{ $post->id }}">{{ $post->title }}</a></h2>
+		<h2><a href="blog_post?id=<?php echo $post['id']?>"><?php echo $post['title']?></a></h2>
 		<div class="roundcont">
 			<div class="roundtop"><img src="<?php echo asset("theme/img/tl.gif")?>" alt="tl img"  width="10" height="10" class="corner"  style="display: none" /> </div>
 				<!-- Post Content -->
-				<p>{{ $post->content }}</p>
+				<p><?php echo $post['content']?></p>
 				<!-- Post date/time -->
-				<span class="glyphicon glyphicon-time"></span> Posted on {{ $post->reg_date }}<p>
+				<span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post['reg_date']?> <p>
 			<div class="roundbottom"><img src="<?php echo asset("theme/img/bl.gif")?>" alt="bl img" width="10" height="10" class="corner" style="display: none" /></div>
 		</div>
-	@endforeach
+	<?php } ?>
 
 </body>
 
