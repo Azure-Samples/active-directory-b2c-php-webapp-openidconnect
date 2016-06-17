@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
     <title>Olena's Blog</title>
 
@@ -58,6 +58,8 @@
         <a href="#">www.colormixers.com/</a></p>
       <div class="roundbottom"><img src="img/bl.gif" alt="bl img" width="10" height="10" class="corner" style="display: none" /></div>
     </div>
+	
+	<div id="footer"> Design by <a href="http://www.mitchinson.net"> www.mitchinson.net</a></div>
 
 	<!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
