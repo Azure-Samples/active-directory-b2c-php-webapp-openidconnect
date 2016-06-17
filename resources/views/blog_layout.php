@@ -24,10 +24,10 @@
   </div>
   <div id="navcontainer">
     <ul id="navlist">
-      <li id="active"><a id="current" href="#">Home</a></li>
-      <li><a href="#">New Blog Post</a></li>
-      <li><a href="#">Edit Profile</a></li>
-      <li><a href="#">Logout</a></li>
+      <li id="active"><a id="current" href="https://github.com/Azure-Samples/active-directory-b2c-php-webapp-openidconnect">Source code on Github</a></li>
+      <li><a href="new_post">New Blog Post</a></li>
+      <li><a href="edit_profile">Edit Profile</a></li>
+      <li><a href="logout">Logout</a></li>
     </ul>
   </div>
   <h1>Hello, <?php echo $given_name?>!</h1>
@@ -41,68 +41,36 @@
   <div id="sidebar-a">
 	<h2>About this site</h2>
 		<p>This website was built using PHP and the framework Laravel using IIS on Windows.</p>
-		<p>Check out the <a href="https://github.com/Azure-Samples/active-directory-b2c-php-webapp-openidconnect">source code on github</a> to get the technical details on how the site integrates with B2C.
-																														You'll also find instructions on how to deploy your own website that integrates with B2C, so try it out!
-																														Additionally, the repo contains code that demonstrates the use of several B2C policies: general sign-in/sign-up 
-																														without multifactor authetication, sign-in/sign-up with multifactor authentication, and profile editing. Users 
-																														designated as administrators must login with the administrator policy requiring multifactor authentication. 
-																														Administrators have the ability to create new blog posts. The application also illustrates how to receive and verify id-tokens 
-																														from the B2C endpoint following the OpenID Connect standard. 
-    <h2>Click on the links to learn more!</h2>
+		<p>Check out the <a href="https://github.com/Azure-Samples/active-directory-b2c-php-webapp-openidconnect">source code on github</a> 
+			to get the technical details on how the site integrates with B2C. 
+			You'll also find instructions on how to deploy your own website that integrates with B2C, so try it out!</p>
+		<p>Additionally, the repo contains code that demonstrates the use of several B2C policies: general sign-in/sign-up 
+			without multifactor authetication, sign-in/sign-up with multifactor authentication, and profile editing. Users 
+			designated as administrators must login with the administrator policy requiring multifactor authentication. 
+			Administrators have the ability to create new blog posts. The application also illustrates how to receive and verify id-tokens 
+			from the B2C endpoint following the OpenID Connect standard. </p>
+    <h2>Thanks to</h2>
     <ul>
-      <li><a href="https://github.com/Azure-Samples/active-directory-b2c-php-webapp-openidconnect">Source code on Github</a></li>
-      <li><a href="https://azure.microsoft.com/en-us/services/active-directory-b2c/">B2C</a></li>
-      <li><a href="http://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect authentication protocol</a></li>
+	  <li>the entire B2C team for being super helpful</li>
+	  <li><a href="http://www.mitchinson.net">www.mitchinson.net</a> for the blog theme design</li>
     </ul>
   </div>
   <div id="content">
-    <h2>Colour Resources</h2>
-    <div class="roundcont">
-      <div class="roundtop"><img src="<?php echo asset("img/tl.gif")?>" alt="tl img"  width="10" height="10" class="corner"  style="display: none" /> </div>
-      <p><a href="#">www.colourlovers.com</a><br />
-        <a href="#">www.draac.com/</a><br />
-        <a href="#">www.nutrocker.co.uk/</a><br />
-        <a href="#">www.colorcombo.com</a> <br />
-        <a href="#">www.colorwhore.com</a><br />
-        <a href="#">www.limov.com</a><br />
-        <a href="#">www.wellstyled.com</a><br />
-        <a href="#">www.colormixers.com/</a></p>
-      <div class="roundbottom"><img src="<?php echo asset("img/bl.gif")?>" alt="bl img" width="10" height="10" class="corner" style="display: none" /></div>
-    </div>
+  
 	
-	<div id="footer"> Design by <a href="http://www.mitchinson.net"> www.mitchinson.net</a></div>
-
-	<!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><?php if (isset($given_name)) echo "Hello, ".$given_name."!"?></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-					<li>
-                        <a href="new_post">New Blog Post</a>
-                    </li>
-                    <li>
-                        <a href="edit_profile">Edit Profile</a>
-                    </li>
-                    <li>
-                        <a href="logout">Logout</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+	<!-- Display all Blog Posts -->
+	<?php foreach($blog_posts as $post) { ?>
+		<!-- Title -->
+		<h2><?php echo $post['title']?></h2>
+		<div class="roundcont">
+			<div class="roundtop"><img src="<?php echo asset("theme/img/tl.gif")?>" alt="tl img"  width="10" height="10" class="corner"  style="display: none" /> </div>
+				<!-- Post Content -->
+				<p><?php echo $post['content']?></p>
+				<!-- Post date/time -->
+				<span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post['reg_date']?> <p>
+			<div class="roundbottom"><img src="<?php echo asset("theme/img/bl.gif")?>" alt="bl img" width="10" height="10" class="corner" style="display: none" /></div>
+		</div>
+	<?php } ?>
 	
 </body>
 
