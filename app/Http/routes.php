@@ -40,7 +40,7 @@ function fetchBlogPostById($id) {
 }
 
 function createNewBlogPost() {
-	require app_path()."/Http/Controllers/Database.php";
+	require_once app_path()."/Http/Controllers/Database.php";
 	
 	// Check that the user just created a blog post
 	if (isset($_POST['new_blog_post'])) {
@@ -51,13 +51,13 @@ function createNewBlogPost() {
 }
 
 function createNewComment() {
-	require app_path()."/Http/Controllers/Database.php";
+	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
 	$database->newComment($_GET['id'], $_POST['content'], $_POST['author']);
 }
 
 function fetchComments() {
-	require app_path()."/Http/Controllers/Database.php";
+	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
 	$comments = $database->newComment($_GET['id']);
 	return $comments;
