@@ -91,7 +91,7 @@ Route::get('/', function() {
 	echo "options";
 	var_dump($options);
 	
-	return view('home', [$options]);
+	return view('home', ['given_name'=>"UGH", $options]);
 	
 });
 
