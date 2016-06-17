@@ -58,6 +58,8 @@ function createNewComment() {
 
 Route::get('/', function() {
 	
+	require app_path()."/Http/Controllers/create_database.php";
+	
 	// User not authenticated - show login page
 	if (!isset($_COOKIE['user'])) {
 		return view('please_login');
