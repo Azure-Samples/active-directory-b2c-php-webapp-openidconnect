@@ -143,9 +143,9 @@ Route::post('/', function () {
 	setcookie("user", $given_name);
 			
 	// Fetch blog posts from database	
-	return view('home', ['user_logged_in'=>checkUserLoggedIn(),
-						'user_is_admin'=>checkUserIsAdmin(),
-						'given_name'=>getGivenName(), 
+	return view('home', ['user_logged_in'=>true,
+						'user_is_admin'=>in_array($email, $admins),
+						'given_name'=>$given_name, 
 						'blog_posts'=>fetchBlogPosts()]);
 		
 });
