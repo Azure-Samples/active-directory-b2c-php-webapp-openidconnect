@@ -36,7 +36,7 @@
   <p><img class="img" src="<?php echo asset("theme/img/blank.jpg")?>" alt="blank" title="blank" width="60" height="60" /> As part of my intern project, I'm creating a PHP web application 
 																														that uses B2C for authentication. In fact, you're on a live demo 
 																														of the site right now! I encourage you to explore this site and 
-																														try out B2C for yourself by signing up/signing in and editing your profile.</p>
+																														try out B2C for yourself by signing up/signing in and editing your profile.<br><br><br></p>
 																														
   <div id="sidebar-a">
 	<h2>About this site</h2>
