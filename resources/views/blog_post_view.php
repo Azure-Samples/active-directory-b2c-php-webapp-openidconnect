@@ -28,7 +28,6 @@
 						<!-- Post Content -->
 						<p><?php echo $post['content']?></p>
 						<!-- Post date/time -->
-						<span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post['reg_date']?> <p>
 					<div class="roundbottom"><img src="<?php echo asset("theme/img/bl.gif")?>" alt="bl img" width="10" height="10" class="corner" style="display: none" /></div>
 				</div>
 			<?php } ?>
@@ -55,15 +54,16 @@
                 <!-- Posted Comments -->
 				<?php foreach($comments as $comment) { ?>
                 <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
                     <div class="media-body">
                         <h4 class="media-heading"><?php echo $comment['author']?>
                             <small><?php echo $comment['reg_date']?></small>
                         </h4>
-						<?php echo $comment['content']?>
-                    </div>
+						<div class="roundcont">
+							<div class="roundtop"><img src="<?php echo asset("theme/img/tl.gif")?>" alt="tl img"  width="10" height="10" class="corner"  style="display: none" /> </div>
+								<?php echo $comment['content']?>
+							<div class="roundbottom"><img src="<?php echo asset("theme/img/bl.gif")?>" alt="bl img" width="10" height="10" class="corner" style="display: none" /></div>
+						</div>
+					</div>
                 </div>
 				<?php } ?>
 
