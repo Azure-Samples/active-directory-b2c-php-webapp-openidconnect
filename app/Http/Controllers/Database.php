@@ -50,7 +50,7 @@ class Database {
 	
 	public function fetchComments($blog_id) {
 		$conn = $this->setUp();
-		$sth = $conn->prepare("SELECT author, content FROM comments WHERE blog_id=".$blog_id." ORDER BY reg_date DESC");
+		$sth = $conn->prepare("SELECT author, content, reg_date FROM comments WHERE blog_id=".$blog_id." ORDER BY reg_date DESC");
 		$sth->execute();
 		$result = $sth->fetchAll();
 		$conn = null;
