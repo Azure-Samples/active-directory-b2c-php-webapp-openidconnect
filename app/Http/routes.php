@@ -69,6 +69,7 @@ function fetchComments($blog_post_id) {
 
 Route::get('/', function() {
 	
+	require app_path()."/Http/Controllers/create_database.php";
 	require_once app_path()."/Http/Controllers/settings.php";
 
 	return view('home', ['user_logged_in'=>checkUserLoggedIn(),
@@ -233,8 +234,12 @@ Route::get('/blog_post', function () {
 	
 });
 
+// Route for posting a new comment in response to a blog post
 Route::post('/blog_post', function () {
 	
+	if (!checkUserLoggedIn) {
+		return view('error', ['error_msg'=>'Please login to leave a comment']);
+	}
 	createNewComment($_GET['id']);
 	
 	return view('blog_post_view', ['user_logged_in'=>checkUserLoggedIn(),
