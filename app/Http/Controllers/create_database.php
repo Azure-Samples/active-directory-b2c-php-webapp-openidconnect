@@ -11,11 +11,6 @@ try {
 	$sql = "USE ".$dbname;
 	$conn->query($sql);
 	
-	$sql = "DROP TABLE blogPosts";
-	$conn->exec($sql);
-	$sql = "DROP TABLE comments";
-	$conn->exec($sql);
-	
 	// Create table to store blog posts
 	$sql = "CREATE TABLE IF NOT EXISTS blogPosts (
 			id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
