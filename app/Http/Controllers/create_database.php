@@ -19,8 +19,8 @@ try {
 	// Create table to store blog posts
 	$sql = "CREATE TABLE IF NOT EXISTS blogPosts (
 			id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-			title VARCHAR(30) NOT NULL,
-			content VARCHAR(5000) NOT NULL,
+			title VARCHAR(200) NOT NULL,
+			content VARCHAR(10000) NOT NULL,
 			reg_date TIMESTAMP
 			)";
 	$conn->exec($sql);

@@ -69,6 +69,7 @@ function fetchComments($blog_post_id) {
 
 Route::get('/', function() {
 	
+	require_once app_path()."/Http/Controllers/create_database.php";
 	require_once app_path()."/Http/Controllers/settings.php";
 
 	return view('home', ['user_logged_in'=>checkUserLoggedIn(),
