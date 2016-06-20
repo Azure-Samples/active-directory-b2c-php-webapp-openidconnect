@@ -46,10 +46,11 @@
 		<h2><a href="blog_post?id=<?php echo $post['id']?>"><?php echo $post['title']?></a></h2>
 		<div class="roundcont">
 			<div class="roundtop"><img src="<?php echo asset("theme/img/tl.gif")?>" alt="tl img"  width="10" height="10" class="corner"  style="display: none" /> </div>
-				<!-- Post Content -->
-				<p><?php echo $post['content']?></p>
 				<!-- Post date/time -->
 				<span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post['reg_date']?> <p>
+				<!-- Post Content -->
+				<p><?php echo $post['content']?></p>
+				<a href="blog_post?id=<?php echo $post['id']?>">Read more or leave a comment</a><p>
 			<div class="roundbottom"><img src="<?php echo asset("theme/img/bl.gif")?>" alt="bl img" width="10" height="10" class="corner" style="display: none" /></div>
 		</div>
 	<?php } ?>
