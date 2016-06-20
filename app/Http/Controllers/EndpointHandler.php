@@ -24,9 +24,7 @@ class EndpointHandler {
 	public function getEndpointData($uri) {
 
 		$ch = curl_init($uri);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // option to return as a string
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 		$resp = curl_exec($ch);
 		curl_close($ch);
 		return $resp;
@@ -42,8 +40,7 @@ class EndpointHandler {
 		curl_setopt($ch,CURLOPT_URL, $uri);
 		curl_setopt($ch,CURLOPT_POST, sizeof($fields));
 		curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // option to return as a string
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 
 		$resp = curl_exec($ch);
 		curl_close($ch);
