@@ -203,7 +203,7 @@ Route::get('/edit_profile', function () {
 Route::get('/new_post', function () {
 	
 	$userIsAdmin = checkUserIsAdmin();
-	if ($userIsAdmin == false) return view('error', ['error_msg'=>"No permission"]);
+	if ($userIsAdmin == false) return view('error', ['error_msg'=>"You must be an admin to write a new blog post"]);
 							 
 	return view('blog_post_create', ['user_logged_in'=>checkUserLoggedIn(),
 									'user_is_admin'=>checkUserIsAdmin(),
@@ -214,7 +214,7 @@ Route::get('/new_post', function () {
 Route::post('/new_post', function() {
 	
 	$userIsAdmin = checkUserIsAdmin();
-	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>$userIsAdmin]);
+	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>"You must be an admin to write a new blog post"]);
 	createNewBlogPost();
 	
 	return redirect('/');
@@ -236,7 +236,7 @@ Route::get('/blog_post', function () {
 // Route for posting a new comment in response to a blog post
 Route::post('/blog_post', function () {
 	
-	if (!checkUserLoggedIn) {
+	if (!checkUserLoggedIn()) {
 		return view('error', ['error_msg'=>'Please login to leave a comment']);
 	}
 	createNewComment($_GET['id']);
