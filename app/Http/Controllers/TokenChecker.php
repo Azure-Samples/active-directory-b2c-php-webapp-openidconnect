@@ -8,7 +8,9 @@ require app_path()."/Http/Controllers/settings.php";
 error_reporting(E_ALL);
 
 
-// A class to verify an id_token, following implicit flow
+// A class to verify an id_token, following either:
+// 1. Implicit Flow (response from authorization endpoint is an ID token)
+// 2. Confidential Client Flow (response from authorization is a code)
 class TokenChecker {
 	
 	// Class variables
@@ -36,21 +38,21 @@ class TokenChecker {
 		
 		require "settings.php";
 		$post_fields = array(
-									'client_id' => urlencode($this->clientID),
-									'client_secret' => urlencode($this->client_secret),
-									'code' => urlencode($code),
-									'scope' => urlencode($scope),
-									'redirect_uri' => urlencode($redirect_uri),
-									'grant_type' => urlencode("authorization_code")
-				);
+						'client_id' => urlencode($this->clientID),
+						'client_secret' => urlencode($this->client_secret),
+						'code' => urlencode($code),
+						'scope' => urlencode($scope),
+						'redirect_uri' => urlencode($redirect_uri),
+						'grant_type' => urlencode("authorization_code")
+						);
 				
-				// Get Token Endpoint
-				$token_endpoint = $this->endpointHandler->getTokenEndpoint();
+		// Get Token Endpoint
+		$token_endpoint = $this->endpointHandler->getTokenEndpoint();
 				
-				// Execute post and get id token 
-				$result = $this->endpointHandler->postEndpointData($token_endpoint, $post_fields);
-				$id_token = getClaim("id_token", $result);
-				return $id_token;
+		// Execute post and get id token 
+		$result = $this->endpointHandler->postEndpointData($token_endpoint, $post_fields);
+		$id_token = getClaim("id_token", $result);
+		return $id_token;
 		
 	}
 	
@@ -119,8 +121,8 @@ class TokenChecker {
 		if ($audience != $this->clientID) return false;
 		
 		$cur_time = time();
-		$not_before = getClaim("nbf", $this->payload, false); // epoch time, time after which token is valid (so basically nbf < cur time < exp)
-		$expiration = getClaim("exp", $this->payload, false); // epoch time, check that the token is still valid
+		$not_before = getClaim("nbf", $this->payload); // epoch time, time after which token is valid (so basically nbf < cur time < exp)
+		$expiration = getClaim("exp", $this->payload); // epoch time, check that the token is still valid
 		if ($not_before > $cur_time) return false;
 		if ($cur_time > $expiration) return false;
 		
@@ -145,10 +147,10 @@ class TokenChecker {
 		return getClaim($name, $this->payload);
 	}
 	
+	// Returns the end session (aka logout) url
 	public function getEndSessionEndpoint() {
 		return $this->endpointHandler->getEndSessionEndpoint();
 	}
-	
 }
  
 	
