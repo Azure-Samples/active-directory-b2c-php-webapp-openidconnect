@@ -11,10 +11,12 @@
 |
 */
 
+// Returns true if the user is logged in
 function checkUserLoggedIn() {
 	return isset($_COOKIE['user']);
 }
 
+// Returns true if the user is an admin
 function checkUserIsAdmin() {
 	
 	require app_path()."/Http/Controllers/settings.php";
@@ -24,11 +26,14 @@ function checkUserIsAdmin() {
 	return true;
 }
 
+// Returns the given name of the current user
+// Returns an empty string if the user is not authenticated
 function getGivenName() {
 	if (!checkUserLoggedIn()) return "";
 	return $_COOKIE['user'];
 }
 
+// Fetches all the blog posts from the database
 function fetchBlogPosts() {
 	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
@@ -36,6 +41,7 @@ function fetchBlogPosts() {
 	return $blog_posts;
 }
 
+// Fetches a single blog post from the database by ID
 function fetchBlogPostById($id) {
 	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
@@ -43,6 +49,7 @@ function fetchBlogPostById($id) {
 	return $blog_post;
 }
 
+// Inserts a new blog post into the database, using the POSTed title and content
 function createNewBlogPost() {
 	require_once app_path()."/Http/Controllers/Database.php";
 	
@@ -54,12 +61,14 @@ function createNewBlogPost() {
 	}
 }
 
+// Inserts a new comment on a blog post, using the POSTed content and author
 function createNewComment($blog_post_id) {
 	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
 	$database->newComment($blog_post_id, $_POST['content'], $_POST['author']);
 }
 
+// Fetches all the comments associated with a particular blog post
 function fetchComments($blog_post_id) {
 	require_once app_path()."/Http/Controllers/Database.php";
 	$database = new Database();
@@ -67,6 +76,7 @@ function fetchComments($blog_post_id) {
 	return $comments;
 }
 
+// Register for the general homepage
 Route::get('/', function() {
 	
 	require_once app_path()."/Http/Controllers/settings.php";
@@ -77,6 +87,7 @@ Route::get('/', function() {
 						'blog_posts'=>fetchBlogPosts()]);
 });
 
+// Register the homepage when an ID Token or Code is posted to the page from B2C
 Route::post('/', function () {
 	
 	require app_path()."/Http/Controllers/settings.php";
@@ -150,6 +161,7 @@ Route::post('/', function () {
 		
 });
 
+// Register the login route
 Route::get('/login', function () {
     require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/EndpointHandler.php";
@@ -164,6 +176,7 @@ Route::get('/login', function () {
 	return redirect($authorization_endpoint);
 });
 
+// Register the logout route
 Route::get('/logout', function () {
 	
 	// User not authenticated
@@ -185,6 +198,7 @@ Route::get('/logout', function () {
 	} 
 });
 
+// Register the edit profile route
 Route::get('/edit_profile', function () {
     require app_path()."/Http/Controllers/settings.php";
 	require app_path()."/Http/Controllers/EndpointHandler.php";
@@ -199,7 +213,7 @@ Route::get('/edit_profile', function () {
 	return redirect($authorization_endpoint);
 });
 
-// A page that allows the user to create a new blog post
+// Register the page that allows the user to create a new blog post
 Route::get('/new_post', function () {
 	
 	$userIsAdmin = checkUserIsAdmin();
@@ -210,17 +224,19 @@ Route::get('/new_post', function () {
 									'given_name'=>getGivenName()]);
 });
 
-// A route that inserts a new blog post into the database, then shows the homepage
+// Register the route that inserts a new blog post into the database
 Route::post('/new_post', function() {
 	
 	$userIsAdmin = checkUserIsAdmin();
 	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>"You must be an admin to write a new blog post"]);
 	createNewBlogPost();
 	
+	// Now redirect to the home page
 	return redirect('/');
 	
 });
 
+// Register the route that allows someone to view a particular blog post
 Route::get('/blog_post', function () {
 	
 	return view('blog_post_view', ['user_logged_in'=>checkUserLoggedIn(),
@@ -233,7 +249,7 @@ Route::get('/blog_post', function () {
 	
 });
 
-// Route for posting a new comment in response to a blog post
+// Register the route for posting a new comment in response to a blog post
 Route::post('/blog_post', function () {
 	
 	if (!checkUserLoggedIn()) {
