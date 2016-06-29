@@ -6,11 +6,10 @@ A live version of this application is available here: https://olenablog.azureweb
 The instructions below show you how to run/deploy your own blogging application using PHP (with the framework Laravel) and IIS on Windows.
 
 ## Pre-requisites
-1. Install PHP for Windows: http://www.iis.net/learn/application-frameworks/install-and-configure-php-on-iis/install-and-configure-php
-2. Install CURL: https://curl.haxx.se/download.html
-3. Install mySQL: https://dev.mysql.com/downloads/installer/
-4. In your PHP.ini file, make sure to enable these extensions: openssl, curl, mysql
-5. Install Laravel. See the section entitled "Create a PHP (Laravel) app on your dev machine" on this page: https://azure.microsoft.com/en-gb/documentation/articles/app-service-web-php-get-started/
+1. Install [PHP for Windows](http://www.iis.net/learn/application-frameworks/install-and-configure-php-on-iis/install-and-configure-php). In your PHP.ini file, make sure to enable these extensions: openssl, curl, mysql
+2. Install [CURL](https://curl.haxx.se/download.html)
+3. Install [mySQL](https://dev.mysql.com/downloads/installer/)
+4. Install Laravel. (For installation instructions, see the section entitled "Create a PHP (Laravel) app on your dev machine" on this [page](https://azure.microsoft.com/en-gb/documentation/articles/app-service-web-php-get-started/)).
 
 ## Use the Azure Portal
 1. Create a database in the Azure Portal. See the section "Create a MySQL database in Azure portal" on this page:  https://azure.microsoft.com/en-gb/documentation/articles/store-php-create-mysql-database/
