@@ -23,6 +23,27 @@ The instructions below show you how to run/deploy your own blogging application 
 
 ## Deploy this sample to Azure
 1. Use these instructions: https://azure.microsoft.com/en-gb/documentation/articles/app-service-web-php-get-started/
+2. 
+3.	In the terminal, navigate to the folder where the source code lives and log in to Azure using the command “azure login”
+4.	Follow the help message to continue the login process.
+5.	Run the following command: azure site create --git <website_name>
+Configure Azure web app settings in the terminal
+6.	azure site set --php-version 5.6
+7.	php artisan key:generate --show
+azure site appsetting add APP_KEY="<output_of_php_artisan_key:generate_--show>"
+8.	azure site appsetting add APP_DEBUG=true
+
+Add an extension (aka. enable Composer) and set the virtual directory in the Azure Portal
+9.	Click App Services > <app_name> > Tools
+10.	Extensions > Add
+11.	Select Composer in the Choose extension blade (blade: a portal page that opens horizontally).
+12.	Click OK in the Accept legal terms blade.
+13.	Click OK in the Add extension blade.
+14.	Back in your web app's blade, click Settings > Application Settings.
+15.	Scroll to the bottom of the blade and change the root virtual directory to point to site\wwwroot\public instead of site\wwwroot.
+Push your code to the Azure website.
+16.	Commit and push using git, as normal.
+
 
 ## About the code
 The main logic is in "app/Http/routes.php." Helper functions and classes are located in "app/Http/Controllers". In particular, if you are interested in the token verification logic, see "app/Http/Controllers/TokenChecker.php".  The rest of the code is mainly associated with the Laravel framework. 
