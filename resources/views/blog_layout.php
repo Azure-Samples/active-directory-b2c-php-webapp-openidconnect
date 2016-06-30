@@ -9,7 +9,7 @@
     <meta name="author" content="">
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
-    <title>Olena's Blog</title>
+    <title>B2C PHP Web App</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo asset("/theme/style.css")?>" rel="stylesheet" type="text/css">
@@ -20,7 +20,7 @@
 
 	<div id="container">
   <div id="banner">
-    <h1>Olena's Blog - blogging about my internship at Microsoft</h1>
+    <h1>B2C PHP Web App</h1>
   </div>
   <div id="navcontainer">
     <ul id="navlist">
@@ -36,8 +36,22 @@
     </ul>
   </div>
   
-  
-  <h1>Hello there<?php if ($user_logged_in) echo ', '.$given_name?>!</h1>
+  <?php if ($user_logged_in) {
+	  echo '<h2>You have successfully logged in with B2C!</h2>';
+	  echo '<div class="roundcont">';
+	  echo '<div class="roundtop"><img src="<?php echo asset("theme/img/tl.gif")?>" alt="tl img"  width="10" height="10" class="corner"  style="display: none" /> </div>';
+	  echo '<p>Details:</p>';
+	  echo '<p>Given name: '.$given_name.'</p>';
+	  echo '<p>Is Admin? ';
+	  if ($user_is_admin) echo 'Yes';
+	  else echo 'No';
+	  echo '</p>';
+				
+				
+	  echo '<div class="roundbottom"><img src="<?php echo asset("theme/img/bl.gif")?>" alt="bl img" width="10" height="10" class="corner" style="display: none" /></div>';
+	  echo '</div>';
+  }
+  else echo '<h1>You are not logged in. Please try logging in.</h1>'; ?>
   
 	
 </body>
