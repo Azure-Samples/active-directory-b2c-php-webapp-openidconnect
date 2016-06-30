@@ -29,12 +29,12 @@ In the terminal, type the command "php artisan serve" and navigate to http://loc
 ### To deploy this sample to Azure
 If you get stuck at any point, try taking a look at these [instructions](https://azure.microsoft.com/en-gb/documentation/articles/app-service-web-php-get-started/).
 
-### Create an Azure website
+#### Create an Azure website
 + In the terminal, navigate to the folder where the source code lives and log in to Azure using the command “azure login”.
 + Follow the help message to continue the login process.
 + Run the following command to create your web app in Azure: "azure webapp create [options] <resource-group> <name> <location> <plan>"
 
-### Use the Azure Portal to Finish Set Up
+#### Use the Azure Portal to Finish Set Up
 + Navigate to your account in the Azure Portal. Click App Services > your-app's-name > Tools > Extensions > Add
 + Select Composer in the Choose extension blade.
 + Click OK in the Accept legal terms blade. Click OK in the Add extension blade.
@@ -42,11 +42,10 @@ If you get stuck at any point, try taking a look at these [instructions](https:/
 + Check that the PHP version is up to date.
 + Scroll to the bottom of the blade and change the root virtual directory to point to site\wwwroot\public instead of site\wwwroot.
 
-## Push your code to the Azure website.
+#### Push your code to the Azure website.
 + In the portal, open up your app’s Properties blade. Copy down the deployment URL.
 + In the terminal, use the command "git remote add azure <deployment URL>" to set up deployment to Azure.
 + Commit and push using git, as normal.
-
 
 ## About the code
 The main logic is in "app/Http/routes.php." Helper functions and classes are located in "app/Http/Controllers". In particular, if you are interested in the token verification logic, see "app/Http/Controllers/TokenChecker.php".  The rest of the code is mainly associated with the Laravel framework. 
