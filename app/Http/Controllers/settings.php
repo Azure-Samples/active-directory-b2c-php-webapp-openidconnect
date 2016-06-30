@@ -6,7 +6,7 @@
 	// Create an Azure AD B2C application in the Azure Portal, then configure the following settings
 	$tenant = "olenaolena"; // the name of the tenant you used in the portal
 	$clientID = "29347cf0-6024-40c6-8dec-71e090c10ba8"; // the clientID for B2C application that you created
-	$client_secret = ""; // the client secret for B2C application that you created, only fill this in if you want to use confidential client flow (response type is code)
+	$client_secret = " "; // the client secret for B2C application that you created, only fill this in if you want to use confidential client flow (response type is code)
 	$redirect_uri = urlencode("https://olenablogtest.azurewebsites.net/"); 
 	
 	// Decide which authentication flow you would like to follow
