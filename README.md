@@ -47,7 +47,8 @@ If you get stuck at any point, try taking a look at these [instructions](https:/
 + Then click Deployment Credentials and set up your username and password for deployment.
 + Last, open up the Properties blade. Copy down the deployment URL.
 + In the terminal, use the commands "git init" and "git remote add azure [deployment URL]" to set up deployment to Azure.
-+ Commit and push using git, as normal.
++ Commit using normal git commands.
++ Use "git push azure master" to deploy online.
 
 ## About the code
 The main logic is in "app/Http/routes.php." Helper functions and classes are located in "app/Http/Controllers". In particular, if you are interested in the token verification logic, see "app/Http/Controllers/TokenChecker.php".  The rest of the code is mainly associated with the Laravel framework. 
