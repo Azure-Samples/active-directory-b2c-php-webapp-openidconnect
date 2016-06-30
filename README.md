@@ -21,10 +21,11 @@ The instructions below show you how to run/deploy your own blogging application 
 3. In your app folder, open up "app/Http/Controllers/settings.php" and follow the instructions in the comments to configure the settings for your app.
 
 ## Running and Deploying your App
+
 **To run your app locally**
 In the terminal, type the command "php artisan serve" and navigate to http://localhost:8000/ to see your website in action.
 
-** To deploy this sample to Azure**
+**To deploy this sample to Azure**
 If you get stuck at any point, try taking a look at these [instructions](https://azure.microsoft.com/en-gb/documentation/articles/app-service-web-php-get-started/).
 
 __Create an Azure website__
