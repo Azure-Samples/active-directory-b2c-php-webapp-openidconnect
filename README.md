@@ -19,37 +19,33 @@ The instructions below show you how to run/deploy your own blogging application 
 1. Clone the code from github and put it in your /wwwroot folder.
 2. Download the latest version of the [php security library](http://phpseclib.sourceforge.net/index.html) and place the download in your repo in the folder "app/Http/Controllers/phpseclib".
 3. In your app folder, open up "app/Http/Controllers/settings.php" and follow the instructions in the comments to configure the settings for your app.
+4. In the terminal, type "composer install" to install the necessary dependencies.
 
 ## Running and Deploying your App
 
-**To run your app locally**
+### To run your app locally
 In the terminal, type the command "php artisan serve" and navigate to http://localhost:8000/ to see your website in action.
 
-**To deploy this sample to Azure**
+### To deploy this sample to Azure
 If you get stuck at any point, try taking a look at these [instructions](https://azure.microsoft.com/en-gb/documentation/articles/app-service-web-php-get-started/).
 
-__Create an Azure website__
-1.	In the terminal, navigate to the folder where the source code lives and log in to Azure using the command “azure login”.
-2.	Follow the help message to continue the login process.
-3.	Run the following command to create your web app in Azure: "azure site create --git <website_name>"
+### Create an Azure website
++ In the terminal, navigate to the folder where the source code lives and log in to Azure using the command “azure login”.
++ Follow the help message to continue the login process.
++ Run the following command to create your web app in Azure: "azure webapp create [options] <resource-group> <name> <location> <plan>"
 
-__Configure Azure web app settings in the terminal__
-Use the following commands to initialize your settings:
-+ azure site set --php-version 5.6
-+ php artisan key:generate --show
-+ azure site appsetting add APP_KEY="<output_of_php_artisan_key:generate_--show>"
-+ azure site appsetting add APP_DEBUG=true
+### Use the Azure Portal to Finish Set Up
++ Navigate to your account in the Azure Portal. Click App Services > your-app's-name > Tools > Extensions > Add
++ Select Composer in the Choose extension blade.
++ Click OK in the Accept legal terms blade. Click OK in the Add extension blade.
++ Back in your web app's blade, click Settings > Application Settings.
++ Check that the PHP version is up to date.
++ Scroll to the bottom of the blade and change the root virtual directory to point to site\wwwroot\public instead of site\wwwroot.
 
-__Enable Composer and set the virtual directory in the Azure Portal__
-9.	Navigate to your account in the Azure Portal. Click App Services > your-app's-name > Tools > Extensions > Add
-11.	Select Composer in the Choose extension blade.
-12.	Click OK in the Accept legal terms blade.
-13.	Click OK in the Add extension blade.
-14.	Back in your web app's blade, click Settings > Application Settings.
-15.	Scroll to the bottom of the blade and change the root virtual directory to point to site\wwwroot\public instead of site\wwwroot.
-
-__Push your code to the Azure website.__
-16.	Commit and push using git, as normal.
+## Push your code to the Azure website.
++ In the portal, open up your app’s Properties blade. Copy down the deployment URL.
++ In the terminal, use the command "git remote add azure <deployment URL>" to set up deployment to Azure.
++ Commit and push using git, as normal.
 
 
 ## About the code
