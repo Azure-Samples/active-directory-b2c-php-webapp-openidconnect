@@ -45,7 +45,7 @@ If you get stuck at any point, try taking a look at these [instructions](https:/
 ##### Push your code to the Azure website.
 + Now set up deployment settings. Click on Deployment Source in your settings blade and select Local Git Repository.
 + Then click Deployment Credentials and set up your username and password for deployment.
-+ Last, open up the Properties blade. Copy down the deployment URL.
++ Last, open up the Properties blade. Copy down the git URL.
 + In the terminal, use the commands "git init" and "git remote add azure [deployment URL]" to set up deployment to Azure.
 + Commit using normal git commands.
 + Use "git push azure master" to deploy online.
