@@ -33,58 +33,14 @@ function getGivenName() {
 	return $_COOKIE['user'];
 }
 
-// Fetches all the blog posts from the database
-function fetchBlogPosts() {
-	require_once app_path()."/Http/Controllers/Database.php";
-	$database = new Database();
-	$blog_posts = $database->fetchBlogPosts();
-	return $blog_posts;
-}
-
-// Fetches a single blog post from the database by ID
-function fetchBlogPostById($id) {
-	require_once app_path()."/Http/Controllers/Database.php";
-	$database = new Database();
-	$blog_post = $database->fetchBlogPostById($id);
-	return $blog_post;
-}
-
-// Inserts a new blog post into the database, using the POSTed title and content
-function createNewBlogPost() {
-	require_once app_path()."/Http/Controllers/Database.php";
-	
-	// Check that the user just created a blog post
-	if (isset($_POST['new_blog_post'])) {
-		// Put into database
-		$database = new Database();
-		$database->newBlogPost($_POST['title'], $_POST['content']);
-	}
-}
-
-// Inserts a new comment on a blog post, using the POSTed content and author
-function createNewComment($blog_post_id) {
-	require_once app_path()."/Http/Controllers/Database.php";
-	$database = new Database();
-	$database->newComment($blog_post_id, $_POST['content'], $_POST['author']);
-}
-
-// Fetches all the comments associated with a particular blog post
-function fetchComments($blog_post_id) {
-	require_once app_path()."/Http/Controllers/Database.php";
-	$database = new Database();
-	$comments = $database->fetchComments($blog_post_id);
-	return $comments;
-}
-
 // Register for the general homepage
 Route::get('/', function() {
 	
 	require_once app_path()."/Http/Controllers/settings.php";
 
-	return view('home', ['user_logged_in'=>checkUserLoggedIn(),
+	return view('blog_layout', ['user_logged_in'=>checkUserLoggedIn(),
 						'user_is_admin'=>checkUserIsAdmin(),
-						'given_name'=>getGivenName(), 
-						'blog_posts'=>fetchBlogPosts()]);
+						'given_name'=>getGivenName()]);
 });
 
 // Register the homepage when an ID Token or Code is posted to the page from B2C
@@ -153,11 +109,10 @@ Route::post('/', function () {
 	$given_name = $tokenChecker->getClaim("given_name");
 	setcookie("user", $given_name);
 			
-	// Fetch blog posts from database	
-	return view('home', ['user_logged_in'=>true,
+	// Render homepage view	
+	return view('blog_layout', ['user_logged_in'=>true,
 						'user_is_admin'=>in_array($email, $admins),
-						'given_name'=>$given_name, 
-						'blog_posts'=>fetchBlogPosts()]);
+						'given_name'=>$given_name]);
 		
 });
 
@@ -213,54 +168,4 @@ Route::get('/edit_profile', function () {
 	return redirect($authorization_endpoint);
 });
 
-// Register the page that allows the user to create a new blog post
-Route::get('/new_post', function () {
-	
-	$userIsAdmin = checkUserIsAdmin();
-	if ($userIsAdmin == false) return view('error', ['error_msg'=>"You must be an admin to write a new blog post"]);
-							 
-	return view('blog_post_create', ['user_logged_in'=>checkUserLoggedIn(),
-									'user_is_admin'=>checkUserIsAdmin(),
-									'given_name'=>getGivenName()]);
-});
 
-// Register the route that inserts a new blog post into the database
-Route::post('/new_post', function() {
-	
-	$userIsAdmin = checkUserIsAdmin();
-	if (is_string($userIsAdmin)) return view('error', ['error_msg'=>"You must be an admin to write a new blog post"]);
-	createNewBlogPost();
-	
-	// Now redirect to the home page
-	return redirect('/');
-	
-});
-
-// Register the route that allows someone to view a particular blog post
-Route::get('/blog_post', function () {
-	
-	return view('blog_post_view', ['user_logged_in'=>checkUserLoggedIn(),
-							 'user_is_admin'=>checkUserIsAdmin(),
-							 'given_name'=>getGivenName(),
-							 'blog_posts'=>fetchBlogPostById($_GET['id']),
-							 'comments'=>fetchComments($_GET['id'])]);
-							 
-							 
-	
-});
-
-// Register the route for posting a new comment in response to a blog post
-Route::post('/blog_post', function () {
-	
-	if (!checkUserLoggedIn()) {
-		return view('error', ['error_msg'=>'Please login to leave a comment']);
-	}
-	createNewComment($_GET['id']);
-	
-	return view('blog_post_view', ['user_logged_in'=>checkUserLoggedIn(),
-							 'user_is_admin'=>checkUserIsAdmin(),
-							 'given_name'=>getGivenName(),
-							 'blog_posts'=>fetchBlogPostById($_GET['id']),
-							 'comments'=>fetchComments($_GET['id'])]);
-	
-});

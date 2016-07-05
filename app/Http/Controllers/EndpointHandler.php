@@ -22,6 +22,7 @@ class EndpointHandler {
 
 		$ch = curl_init($uri);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		$resp = curl_exec($ch);
 		curl_close($ch);
 		return $resp;
@@ -40,6 +41,7 @@ class EndpointHandler {
 		curl_setopt($ch,CURLOPT_POST, sizeof($fields));
 		curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 		$resp = curl_exec($ch);
 		curl_close($ch);
