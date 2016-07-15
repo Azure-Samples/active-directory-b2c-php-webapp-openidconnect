@@ -39,7 +39,7 @@
   <?php if ($user_logged_in) {
 	  echo '<h2>You have successfully logged in with B2C!</h2>';
 	  echo '<div class="roundcont">';
-	  echo '<div class="roundtop"><img src="<?php echo asset("theme/img/tl.gif")?>" alt="tl img"  width="10" height="10" class="corner"  style="display: none" /> </div>';
+	  echo '<div class="roundtop"><img src="theme/img/tl.gif" alt="tl img"  width="10" height="10" class="corner"  style="display: none" /> </div>';
 	  echo '<p>Details:</p>';
 	  echo '<p>Given name: '.$given_name.'</p>';
 	  echo '<p>Is Admin? ';
