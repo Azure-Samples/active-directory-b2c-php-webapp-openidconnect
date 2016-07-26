@@ -20,6 +20,7 @@ The instructions below show you how to run/deploy your own blogging application 
 + Clone the source code from github: `git clone https://github.com/Azure-Samples/active-directory-b2c-php-webapp-openidconnect.git`
 + Download the latest version of the [php security library](http://phpseclib.sourceforge.net/index.html) and place the download in your repo in the folder "app/Http/Controllers/phpseclib".
 + In your app folder, open up "app/Http/Controllers/settings.php" and follow the instructions in the comments to configure the settings for your app.
++ There will be two flow options: Implicit Flow and Confidential Client Flow. For now, Implicit Flow is the recommended and default setting. Confidential Client Flow is included for future support of access tokens. 
 + In the terminal, type "composer install" to install the necessary dependencies.
 
 ## Running and Deploying your App
