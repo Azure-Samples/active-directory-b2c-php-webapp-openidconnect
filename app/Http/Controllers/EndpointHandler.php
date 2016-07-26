@@ -19,33 +19,13 @@ class EndpointHandler {
 	
 	// Fetches the data at an endpoint using a HTTP GET request
 	public function getEndpointData($uri) {
-
-		$ch = curl_init($uri);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		$resp = curl_exec($ch);
-		curl_close($ch);
-		return $resp;
+		return file_get_contents($uri);
 	}
 	
 	// Using a HTTP POST request, sends data to the endpoint and receives the response
 	public function postEndpointData($uri, $fields) {
-		
-		//url-ify the data for the POST
-		$fields_string = "";
-		foreach ($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-		$fields_string = rtrim($fields_string, '&');
-					
-		$ch = curl_init();
-		curl_setopt($ch,CURLOPT_URL, $uri);
-		curl_setopt($ch,CURLOPT_POST, sizeof($fields));
-		curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-		$resp = curl_exec($ch);
-		curl_close($ch);
-		return $resp;
+		$context  = stream_context_create($fields);
+		return file_get_contents($uri, false, $context);
 	}
 	
 	// Given a B2C policy name, constructs the metadata endpoint 
