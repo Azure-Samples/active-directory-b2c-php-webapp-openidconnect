@@ -86,6 +86,7 @@ Route::post('/', function () {
 		
 	// Fetch user's email and check if admin 
 	$email = $tokenChecker->getClaim("emails");
+	$email = $email[0];
 	if (in_array($email, $admins)) {
 		$acr = $tokenChecker->getClaim("acr");
 			
