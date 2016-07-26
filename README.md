@@ -7,8 +7,6 @@ The instructions below show you how to run/deploy your own blogging application 
 
 ## Pre-requisites
 + Install [PHP](http://php.net/manual/en/install.php). 
-+ In your PHP.ini file, make sure to enable these extensions: openssl, curl
-+ Install [CURL](https://curl.haxx.se/download.html).
 + Install [Laravel](https://laravel.com/docs/5.2), the PHP Web framework you'll be using.
 
 ## Create B2C App and Policies
