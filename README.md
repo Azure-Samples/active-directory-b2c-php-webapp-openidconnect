@@ -6,9 +6,10 @@ A live version of this application is available here: https://olenablog.azureweb
 The instructions below show you how to run/deploy your own blogging application using PHP (with the framework Laravel) and IIS on Windows.
 
 ## Pre-requisites
-+ Install [PHP for Windows](http://www.iis.net/learn/application-frameworks/install-and-configure-php-on-iis/install-and-configure-php). In your PHP.ini file, make sure to enable these extensions: openssl, curl
++ Install [PHP](http://php.net/manual/en/install.php). 
++ In your PHP.ini file, make sure to enable these extensions: openssl, curl
 + Install [CURL](https://curl.haxx.se/download.html).
-+ Install Laravel. (For installation instructions, see the section entitled "Create a PHP (Laravel) app on your dev machine" on this [page](https://azure.microsoft.com/en-gb/documentation/articles/app-service-web-php-get-started/)).
++ Install [Laravel](https://laravel.com/docs/5.2), the PHP Web framework you'll be using.
 
 ## Create B2C App and Policies
 + Navigate to your account in the Azure Portal and open up the B2C blade.
@@ -16,7 +17,7 @@ The instructions below show you how to run/deploy your own blogging application 
 + Create a sign-in/sign-up policy and an edit profile policy. Create a separate policy for admins if you want admins to authenticate with a different policy. For more detailed instructions, see [here](https://azure.microsoft.com/en-us/documentation/articles/active-directory-b2c-reference-policies/).
 
 ## Configuring your PHP app settings
-+ Download the code from github and put it in your /wwwroot folder.
++ Clone the source code from github: `git clone https://github.com/Azure-Samples/active-directory-b2c-php-webapp-openidconnect.git`
 + Download the latest version of the [php security library](http://phpseclib.sourceforge.net/index.html) and place the download in your repo in the folder "app/Http/Controllers/phpseclib".
 + In your app folder, open up "app/Http/Controllers/settings.php" and follow the instructions in the comments to configure the settings for your app.
 + In the terminal, type "composer install" to install the necessary dependencies.
@@ -46,9 +47,9 @@ If you get stuck at any point, try taking a look at these [instructions](https:/
 + Now set up deployment settings. Click on Deployment Source in your settings blade and select Local Git Repository.
 + Then click Deployment Credentials and set up your username and password for deployment.
 + Last, open up the Properties blade. Copy down the git URL.
-+ In the terminal, use the commands "git init" and "git remote add azure [deployment URL]" to set up deployment to Azure.
++ In the terminal, use the commands `git init` and `git remote add azure [deployment URL]` to set up deployment to Azure.
 + Commit using normal git commands.
-+ Use "git push azure master" to deploy online.
++ Use `git push azure master` to deploy online.
 
 ## About the code
 The main logic is in "app/Http/routes.php." Helper functions and classes are located in "app/Http/Controllers". In particular, if you are interested in the token verification logic, see "app/Http/Controllers/TokenChecker.php".  The rest of the code is mainly associated with the Laravel framework. 
