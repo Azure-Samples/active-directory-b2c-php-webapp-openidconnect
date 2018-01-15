@@ -7,8 +7,6 @@ author: t-olhuan
 # PHP Web Application with Azure AD B2C
 This repo contains code for a PHP blogging application that demonstrates the use of several B2C policies: general sign-in/sign-up without multifactor authetication, sign-in/sign-up with multifactor authentication, and profile editing. Users designated as administrators must login with the administrator policy requiring multifactor authentication. Administrators have the ability to create new blog posts. The application also illustrates how to receive and verify id-tokens from the B2C endpoint following the OpenID Connect standard. 
 
-A live version of this application is available here: https://olenablog.azurewebsites.net/ 
-
 The instructions below show you how to run/deploy your own blogging application using PHP (with the framework Laravel) and IIS on Windows.
 
 ## Pre-requisites
