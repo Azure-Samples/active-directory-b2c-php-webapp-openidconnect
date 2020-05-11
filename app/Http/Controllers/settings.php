@@ -5,9 +5,9 @@
 	
 	// Create an Azure AD B2C application in the Azure Portal, then configure the following settings
 	$tenant = "name of your Active Directory tenant";
-	$clientID = "client ID of your B2C application in the portal"; 
+	$clientID = "client ID of your B2C application in the portal";
 	$client_secret = ""; // the client secret for B2C application that you created, only fill this in if you want to use confidential client flow
-	$redirect_uri = urlencode("yourwebsite.com"); 
+	$redirect_uri = urlencode("http://localhost:8000"); 
 	
 	// Decide which authentication flow you would like to follow
 	// To use Implicit Flow (recommended), set response_type to "id_token"
@@ -27,11 +27,11 @@
 	
 	// List of admins' email addresses. You can also leave this empty.
 	$admins = array("");
-	
-	
-	
+
 	// END OF CONFIGURABLE SETTINGS /////////////////////////////////////////////////////////////////////////////
-	$metadata_endpoint_begin = 'https://login.microsoftonline.com/'.
+	$metadata_endpoint_begin = 'https://'.
+						$tenant.
+						'.b2clogin.com/'.
 						 $tenant.
 						 '.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=';
 						 
