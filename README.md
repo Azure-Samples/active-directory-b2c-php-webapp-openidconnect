@@ -11,7 +11,7 @@ The instructions below show you how to run/deploy your own blogging application 
 
 ## Pre-requisites
 + Install [PHP](http://php.net/manual/en/install.php). 
-+ Install [Laravel](https://laravel.com/docs/5.2), the PHP Web framework you'll be using.
++ Install [Laravel](https://laravel.com/docs/6.20.12), the PHP Web framework you'll be using.
 
 ## Create B2C App and Policies
 + Navigate to your account in the Azure Portal and open up the B2C blade.
